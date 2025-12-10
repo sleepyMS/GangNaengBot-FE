@@ -11,7 +11,7 @@ import {
   Settings,
   LogOut,
 } from "lucide-react";
-import { useUIStore, useChatStore, useAuthStore } from "@/store";
+import { useUIStore, useChatStore, useAuthStore, useToastStore } from "@/store";
 import { AlertModal } from "@/components/common";
 
 export const Sidebar = () => {
@@ -31,6 +31,7 @@ export const Sidebar = () => {
     fetchSessions,
   } = useChatStore();
   const { user, profile, isAuthenticated, logout } = useAuthStore();
+  const { addToast } = useToastStore();
   const [isHistoryOpen, setIsHistoryOpen] = useState(true);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
@@ -74,6 +75,7 @@ export const Sidebar = () => {
       const targetId = deleteTargetId;
       setDeleteTargetId(null);
       deleteSession(targetId);
+      addToast("success", "대화가 삭제되었습니다.");
     }
   };
 

@@ -68,10 +68,12 @@ export const Sidebar = () => {
     setDeleteTargetId(sessionId);
   };
 
-  const handleDeleteConfirm = async () => {
+  const handleDeleteConfirm = () => {
     if (deleteTargetId) {
-      await deleteSession(deleteTargetId);
+      // 낙관적 UI: 모달 먼저 닫고 삭제 실행
+      const targetId = deleteTargetId;
       setDeleteTargetId(null);
+      deleteSession(targetId);
     }
   };
 

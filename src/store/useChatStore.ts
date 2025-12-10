@@ -101,21 +101,35 @@ export const useChatStore = create<ChatState>((set, get) => ({
   },
 
   deleteSession: async (sessionId: string) => {
+    const { sessions, currentSessionId, messages } = get();
+
+    // 1. 낙관적 UI: 즉시 세션 삭제 (UI 먼저 업데이트)
+    const deletedSession = sessions.find((s) => s.sid === sessionId);
+    const wasCurrentSession = currentSessionId === sessionId;
+
+    set({
+      sessions: sessions.filter((s) => s.sid !== sessionId),
+      currentSessionId: wasCurrentSession ? null : currentSessionId,
+      messages: wasCurrentSession ? [] : messages,
+    });
+
     try {
+      // 2. 백엔드 API 호출
       await sessionsService.deleteSession(sessionId);
-      set((state) => ({
-        sessions: state.sessions.filter((s) => s.sid !== sessionId),
-        currentSessionId:
-          state.currentSessionId === sessionId ? null : state.currentSessionId,
-        messages: state.currentSessionId === sessionId ? [] : state.messages,
-      }));
     } catch (error) {
-      set({
-        error:
-          error instanceof Error
-            ? error.message
-            : "대화를 삭제하지 못했습니다.",
-      });
+      // 3. 실패 시 롤백: 삭제 취소
+      if (deletedSession) {
+        set((state) => ({
+          sessions: [deletedSession, ...state.sessions],
+          currentSessionId: wasCurrentSession
+            ? sessionId
+            : state.currentSessionId,
+          error:
+            error instanceof Error
+              ? error.message
+              : "대화를 삭제하지 못했습니다.",
+        }));
+      }
     }
   },
 

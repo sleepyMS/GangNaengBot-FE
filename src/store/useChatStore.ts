@@ -8,6 +8,7 @@ interface ChatState {
   currentSessionId: string | null;
   guestUserId: number | null; // 게스트 모드에서 사용할 임시 user_id
   messages: MessageItem[];
+  messageCache: Map<string, MessageItem[]>; // 세션별 메시지 캐시
   isLoading: boolean;
   isSending: boolean;
   error: string | null;
@@ -15,7 +16,7 @@ interface ChatState {
   // Actions
   fetchSessions: () => Promise<void>;
   createSession: () => Promise<string>;
-  selectSession: (sessionId: string) => Promise<void>;
+  selectSession: (sessionId: string, forceRefresh?: boolean) => Promise<void>;
   deleteSession: (sessionId: string) => Promise<void>;
   sendMessage: (
     message: string,
@@ -32,6 +33,7 @@ export const useChatStore = create<ChatState>((set, get) => ({
   currentSessionId: null,
   guestUserId: null, // 게스트 모드 임시 user_id
   messages: [],
+  messageCache: new Map(), // 세션별 메시지 캐시
   isLoading: false,
   isSending: false,
   error: null,
@@ -83,13 +85,50 @@ export const useChatStore = create<ChatState>((set, get) => ({
     }
   },
 
-  selectSession: async (sessionId: string) => {
+  selectSession: async (sessionId: string, forceRefresh: boolean = false) => {
+    const { messageCache } = get();
+    const cachedMessages = messageCache.get(sessionId);
+
+    // 캐시가 있으면 즉시 표시 (낙관적 UI)
+    if (cachedMessages && !forceRefresh) {
+      set({
+        currentSessionId: sessionId,
+        messages: cachedMessages,
+        isLoading: false,
+        error: null,
+      });
+
+      // 백그라운드에서 최신 데이터 가져오기 (조용히 업데이트)
+      sessionsService
+        .getSessionMessages(sessionId)
+        .then((response) => {
+          const newCache = new Map(get().messageCache);
+          newCache.set(sessionId, response.messages);
+
+          // 현재 세션이면 UI도 업데이트
+          if (get().currentSessionId === sessionId) {
+            set({ messages: response.messages, messageCache: newCache });
+          } else {
+            set({ messageCache: newCache });
+          }
+        })
+        .catch(() => {
+          // 백그라운드 에러는 무시 (캐시 데이터 사용 중)
+        });
+      return;
+    }
+
+    // 캐시가 없으면 로딩 표시 후 API 호출
     set({ isLoading: true, error: null, currentSessionId: sessionId });
 
     try {
       const response = await sessionsService.getSessionMessages(sessionId);
+      const newCache = new Map(get().messageCache);
+      newCache.set(sessionId, response.messages);
+
       set({
         messages: response.messages,
+        messageCache: newCache,
         isLoading: false,
       });
     } catch (error) {
@@ -110,10 +149,15 @@ export const useChatStore = create<ChatState>((set, get) => ({
     const deletedSession = sessions.find((s) => s.sid === sessionId);
     const wasCurrentSession = currentSessionId === sessionId;
 
+    // 캐시도 삭제
+    const newCache = new Map(get().messageCache);
+    newCache.delete(sessionId);
+
     set({
       sessions: sessions.filter((s) => s.sid !== sessionId),
       currentSessionId: wasCurrentSession ? null : currentSessionId,
       messages: wasCurrentSession ? [] : messages,
+      messageCache: newCache,
     });
 
     try {
@@ -213,6 +257,13 @@ export const useChatStore = create<ChatState>((set, get) => ({
               : s
           ),
         }));
+      }
+
+      // 캐시 업데이트 (현재 메시지 내역 저장)
+      if (currentSessionId) {
+        const newCache = new Map(get().messageCache);
+        newCache.set(currentSessionId, get().messages);
+        set({ messageCache: newCache });
       }
     } catch (error) {
       // 실패 시 낙관적 메시지 롤백

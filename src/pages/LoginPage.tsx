@@ -6,7 +6,7 @@ import { authService } from "@/api";
 export const LoginPage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { login, isAuthenticated, isLoading } = useAuthStore();
+  const { login, isAuthenticated, isLoading, logout } = useAuthStore();
   const [isMobile, setIsMobile] = useState(false);
 
   // 모바일 감지
@@ -40,6 +40,8 @@ export const LoginPage = () => {
   };
 
   const handleGuestMode = () => {
+    // 기존 로그인 상태 정리 (세션은 첫 메시지 전송 시 생성됨)
+    logout();
     navigate("/");
   };
 

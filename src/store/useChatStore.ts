@@ -6,6 +6,7 @@ interface ChatState {
   // State
   sessions: SessionItem[];
   currentSessionId: string | null;
+  guestUserId: number | null; // 게스트 모드에서 사용할 임시 user_id
   messages: MessageItem[];
   isLoading: boolean;
   isSending: boolean;
@@ -16,7 +17,7 @@ interface ChatState {
   createSession: () => Promise<string>;
   selectSession: (sessionId: string) => Promise<void>;
   deleteSession: (sessionId: string) => Promise<void>;
-  sendMessage: (message: string, userId?: number) => Promise<void>;
+  sendMessage: (message: string) => Promise<void>;
   addMessage: (message: MessageItem) => void;
   clearCurrentSession: () => void;
   clearError: () => void;
@@ -57,6 +58,7 @@ export const useChatStore = create<ChatState>((set, get) => ({
     },
   ],
   currentSessionId: null,
+  guestUserId: null, // 게스트 모드 임시 user_id
   messages: [],
   isLoading: false,
   isSending: false,
@@ -92,6 +94,7 @@ export const useChatStore = create<ChatState>((set, get) => ({
       set((state) => ({
         sessions: [newSession, ...state.sessions],
         currentSessionId: response.session_id,
+        guestUserId: response.user_id, // 세션 생성 시 user_id 저장 (게스트 모드용)
         messages: [],
         isLoading: false,
       }));
@@ -235,8 +238,8 @@ export const useChatStore = create<ChatState>((set, get) => ({
     }
   },
 
-  sendMessage: async (message: string, userId?: number) => {
-    const { currentSessionId } = get();
+  sendMessage: async (message: string) => {
+    const { currentSessionId, guestUserId } = get();
     if (!currentSessionId) {
       set({ error: "세션이 선택되지 않았습니다." });
       return;
@@ -258,7 +261,7 @@ export const useChatStore = create<ChatState>((set, get) => ({
       const response = await chatService.sendMessage({
         session_id: currentSessionId,
         message,
-        user_id: userId,
+        user_id: guestUserId ?? undefined, // 게스트 모드면 guestUserId 사용
       });
 
       // AI 응답 추가

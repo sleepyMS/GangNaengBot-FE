@@ -14,12 +14,15 @@ const BUBBLE_POSITIONS = [
 ];
 
 export const SuggestedQuestions = () => {
-  const { createSession, sendMessage } = useChatStore();
+  const { createSession, sendMessage, currentSessionId } = useChatStore();
   const { isMobile } = useUIStore();
 
   const handleQuestionClick = async (question: string) => {
     try {
-      await createSession();
+      // 세션이 없을 때만 새로 생성
+      if (!currentSessionId) {
+        await createSession();
+      }
       await sendMessage(question);
     } catch {
       // 세션 생성 실패 시 에러는 store에서 처리됨

@@ -38,7 +38,7 @@ export const useChatStore = create<ChatState>((set, get) => ({
   guestUserId: null, // 게스트 모드 임시 user_id
   messages: [],
   messageCache: new Map(), // 세션별 메시지 캐시
-  isLoading: false,
+  isLoading: true, // 초기 로딩 시 스피너 표시
   isSending: false,
   error: null,
 

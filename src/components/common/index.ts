@@ -7,3 +7,4 @@ export { ToastContainer } from "./ToastContainer";
 export { SwipeableItem } from "./SwipeableItem";
 export { Skeleton, MessageSkeleton } from "./Skeleton";
 export { AILoadingSpinner } from "./AILoadingSpinner";
+export { Spinner } from "./Spinner";

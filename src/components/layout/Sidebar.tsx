@@ -12,7 +12,7 @@ import {
   LogOut,
 } from "lucide-react";
 import { useUIStore, useChatStore, useAuthStore, useToastStore } from "@/store";
-import { AlertModal, SwipeableItem } from "@/components/common";
+import { AlertModal, SwipeableItem, Spinner } from "@/components/common";
 
 export const Sidebar = () => {
   const navigate = useNavigate();
@@ -30,6 +30,7 @@ export const Sidebar = () => {
     prefetchSession,
     deleteSession,
     fetchSessions,
+    isLoading: isSessionsLoading,
   } = useChatStore();
   const { user, profile, isAuthenticated, logout } = useAuthStore();
   const { addToast } = useToastStore();
@@ -240,9 +241,18 @@ export const Sidebar = () => {
               {isHistoryOpen && (
                 <div className="space-y-1">
                   {sessions.length === 0 ? (
-                    <p className="text-sm text-gray-400 py-4 whitespace-nowrap overflow-hidden">
-                      아직 강냉봇과 나눈 대화가 없어요.
-                    </p>
+                    isSessionsLoading ? (
+                      <div className="flex flex-col items-center justify-center py-8 gap-3">
+                        <Spinner size="md" />
+                        <span className="text-xs text-gray-400">
+                          불러오는 중...
+                        </span>
+                      </div>
+                    ) : (
+                      <p className="text-sm text-gray-400 py-4 whitespace-nowrap overflow-hidden">
+                        아직 강냉봇과 나눈 대화가 없어요.
+                      </p>
+                    )
                   ) : (
                     sessions.map((session) => {
                       // 세션 아이템 공통 컨텐츠

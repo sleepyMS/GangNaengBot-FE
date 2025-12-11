@@ -1,6 +1,6 @@
 import { useEffect, useRef, useMemo } from "react";
 import { ChatBubble } from "./ChatBubble";
-import { MessageSkeleton } from "@/components/common";
+import { AILoadingSpinner } from "@/components/common";
 import { useChatStore } from "@/store";
 import type { MessageItem } from "@/types";
 
@@ -52,15 +52,9 @@ export const MessageList = () => {
     bottomRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [messages, isSending]);
 
-  // 세션 로딩 중일 때 스켈레톤 표시
+  // 세션 로딩 중일 때 AI 스피너 표시
   if (isLoading) {
-    return (
-      <div className="flex-1 overflow-y-auto px-4 py-6">
-        <div className="max-w-3xl mx-auto">
-          <MessageSkeleton />
-        </div>
-      </div>
-    );
+    return <AILoadingSpinner />;
   }
 
   return (

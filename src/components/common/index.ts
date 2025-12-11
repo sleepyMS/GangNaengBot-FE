@@ -6,3 +6,4 @@ export { CustomDropdown } from "./CustomDropdown";
 export { ToastContainer } from "./ToastContainer";
 export { SwipeableItem } from "./SwipeableItem";
 export { Skeleton, MessageSkeleton } from "./Skeleton";
+export { AILoadingSpinner } from "./AILoadingSpinner";

@@ -74,12 +74,12 @@
     }
   },
   "settings": {
-    "title": "설정",
+    "title": "Settings",
     "tabs": {
       "profile": "프로필",
       "account": "계정",
       "theme": "테마",
-      "language": "다국어"
+      "language": "Language"
     },
     "profile": {
       "title": "프로필 설정",
@@ -99,7 +99,7 @@
       "title": "계정 정보",
       "email": "이메일",
       "googleAccount": "Google 계정",
-      "logout": "로그아웃",
+      "logout": "Log out",
       "logoutConfirm": "정말 로그아웃 하시겠습니까?",
       "guestMode": "게스트 모드",
       "guestDescription": "로그인하면 대화 기록을 저장할 수 있어요"

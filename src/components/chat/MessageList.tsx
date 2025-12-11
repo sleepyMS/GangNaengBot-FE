@@ -72,7 +72,7 @@ export const MessageList = () => {
 
         {/* Loading Indicator - 생각중... */}
         {isSending && (
-          <div className="flex gap-3 animate-slide-up">
+          <div className="flex gap-3 items-end animate-slide-up">
             <div className="flex-shrink-0 w-8 h-8 rounded-full bg-white border border-gray-100 shadow-sm flex items-center justify-center overflow-hidden">
               <img
                 src="/assets/images/logo.svg"

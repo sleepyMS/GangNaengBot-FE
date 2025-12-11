@@ -140,7 +140,8 @@
     "noHistory": "GangNaengBotとの会話がまだありません",
     "deleteConfirm": "この会話を削除しますか？",
     "refresh": "更新",
-    "deleteWarning": "削除された会話は復元できません。"
+    "deleteWarning": "削除された会話は復元できません。",
+    "deleteSuccess": "会話が削除されました。"
   },
   "auth": {
     "googleLogin": "Googleで続ける",

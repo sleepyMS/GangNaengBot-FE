@@ -94,7 +94,7 @@ export const ChatInput = ({ showNewChatButton = false }: ChatInputProps) => {
                 onClick={handleNewChat}
                 className="new-chat-btn inline-flex items-center gap-2 px-5 py-2.5 bg-white dark:bg-slate-800 rounded-full border border-gray-200 dark:border-slate-600 text-sm text-gray-600 dark:text-gray-300 shadow-sm transition-all"
               >
-                새 대화 시작하기
+                {t("chat.newChat")}
                 <Plus size={16} />
               </button>
             </div>

@@ -138,7 +138,8 @@
     "noHistory": "No conversations with GangNaengBot yet",
     "deleteConfirm": "Delete this conversation?",
     "refresh": "Refresh",
-    "deleteWarning": "Deleted conversations cannot be recovered."
+    "deleteWarning": "Deleted conversations cannot be recovered.",
+    "deleteSuccess": "Conversation deleted."
   },
   "auth": {
     "googleLogin": "Continue with Google",

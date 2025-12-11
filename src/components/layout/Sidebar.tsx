@@ -111,7 +111,7 @@ export const Sidebar = () => {
       const targetId = deleteTargetId;
       setDeleteTargetId(null);
       deleteSession(targetId);
-      addToast("success", "대화가 삭제되었습니다.");
+      addToast("success", t("sidebar.deleteSuccess"));
     }
   };
 

@@ -206,12 +206,12 @@ export const Sidebar = () => {
           {/* History Section - 콘텐츠는 고정 크기, 사이드바가 줄어들면 잘려나감 */}
           <div
             className={`
-            flex-1 overflow-hidden px-4 py-4
+            flex-1 overflow-hidden
             transition-opacity duration-300 ease-in-out
             ${isSidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"}
           `}
           >
-            <div className="overflow-y-auto overflow-x-hidden h-full min-w-[200px]">
+            <div className="overflow-y-auto overflow-x-hidden h-full min-w-[200px] px-4 py-4">
               {/* History Header - 고정 레이아웃으로 너비 변화에도 여백 유지 */}
               <div className="flex items-center justify-between mb-3 gap-2">
                 <button

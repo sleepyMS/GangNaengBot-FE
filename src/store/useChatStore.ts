@@ -2,6 +2,9 @@ import { create } from "zustand";
 import type { MessageItem, SessionItem } from "@/types";
 import { sessionsService, chatService } from "@/api";
 
+// 진행 중인 프리페치 요청을 추적하기 위한 Map (컴포넌트 외부에 선언)
+const pendingPrefetches = new Map<string, Promise<MessageItem[]>>();
+
 interface ChatState {
   // State
   sessions: SessionItem[];
@@ -119,7 +122,25 @@ export const useChatStore = create<ChatState>((set, get) => ({
       return;
     }
 
-    // 캐시가 없으면 로딩 표시 후 API 호출
+    // 진행 중인 프리페치가 있으면 해당 요청을 재사용
+    const pendingPrefetch = pendingPrefetches.get(sessionId);
+    if (pendingPrefetch && !forceRefresh) {
+      set({ isLoading: true, error: null, currentSessionId: sessionId });
+
+      try {
+        const messages = await pendingPrefetch;
+        // 프리페치가 완료되면 캐시도 업데이트됨
+        set({
+          messages,
+          isLoading: false,
+        });
+        return;
+      } catch {
+        // 프리페치 실패 시 아래에서 새로 요청
+      }
+    }
+
+    // 캐시도 없고 프리페치도 없으면 로딩 표시 후 API 호출
     set({ isLoading: true, error: null, currentSessionId: sessionId });
 
     try {
@@ -152,17 +173,27 @@ export const useChatStore = create<ChatState>((set, get) => ({
       return;
     }
 
+    // 이미 프리페치 진행 중이면 중복 요청 방지
+    if (pendingPrefetches.has(sessionId)) {
+      return;
+    }
+
     // 백그라운드에서 조용히 데이터 로드
-    sessionsService
+    const prefetchPromise = sessionsService
       .getSessionMessages(sessionId)
       .then((response) => {
         const newCache = new Map(get().messageCache);
         newCache.set(sessionId, response.messages);
         set({ messageCache: newCache });
+        return response.messages;
       })
-      .catch(() => {
-        // 프리페칭 실패는 무시 (클릭 시 다시 시도됨)
+      .finally(() => {
+        // 완료 후 pending에서 제거
+        pendingPrefetches.delete(sessionId);
       });
+
+    // pending에 저장
+    pendingPrefetches.set(sessionId, prefetchPromise);
   },
 
   deleteSession: async (sessionId: string) => {

@@ -37,6 +37,7 @@ export const Sidebar = () => {
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
   const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
+  const prefetchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // 팝오버 외부 클릭 감지
   useEffect(() => {
@@ -61,8 +62,34 @@ export const Sidebar = () => {
   }, [isAuthenticated, fetchSessions]);
 
   const handleSelectSession = async (sessionId: string) => {
+    // 클릭 시 대기 중인 프리페치 타이머 취소
+    if (prefetchTimeoutRef.current) {
+      clearTimeout(prefetchTimeoutRef.current);
+      prefetchTimeoutRef.current = null;
+    }
     await selectSession(sessionId);
     if (isMobile) setSidebarOpen(false);
+  };
+
+  // 디바운스된 프리페칭 (200ms 후 실행)
+  const handleMouseEnterSession = (sessionId: string) => {
+    // 기존 타이머 취소
+    if (prefetchTimeoutRef.current) {
+      clearTimeout(prefetchTimeoutRef.current);
+    }
+    // 200ms 후 프리페칭 실행
+    prefetchTimeoutRef.current = setTimeout(() => {
+      prefetchSession(sessionId);
+      prefetchTimeoutRef.current = null;
+    }, 200);
+  };
+
+  const handleMouseLeaveSession = () => {
+    // 마우스가 떠나면 타이머 취소
+    if (prefetchTimeoutRef.current) {
+      clearTimeout(prefetchTimeoutRef.current);
+      prefetchTimeoutRef.current = null;
+    }
   };
 
   const handleDeleteClick = (e: React.MouseEvent, sessionId: string) => {
@@ -224,7 +251,10 @@ export const Sidebar = () => {
                           role="button"
                           tabIndex={0}
                           onClick={() => handleSelectSession(session.sid)}
-                          onMouseEnter={() => prefetchSession(session.sid)}
+                          onMouseEnter={() =>
+                            handleMouseEnterSession(session.sid)
+                          }
+                          onMouseLeave={handleMouseLeaveSession}
                           onKeyDown={(e) => {
                             if (e.key === "Enter" || e.key === " ") {
                               e.preventDefault();

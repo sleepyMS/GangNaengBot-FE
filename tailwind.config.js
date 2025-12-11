@@ -75,6 +75,9 @@ export default {
           "0%, 80%, 100%": { transform: "scale(0)" },
           "40%": { transform: "scale(1)" },
         },
+        shimmer: {
+          "100%": { transform: "translateX(100%)" },
+        },
       },
       backgroundImage: {
         "gradient-radial":

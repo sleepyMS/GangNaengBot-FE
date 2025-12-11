@@ -4,6 +4,7 @@ import type { User, ProfileResponse } from "@/types";
 import { setAccessToken, removeAccessToken } from "@/api";
 import { authService, profilesService } from "@/api";
 import i18n from "@/i18n";
+import { useChatStore } from "./useChatStore";
 
 interface AuthState {
   // State
@@ -64,6 +65,7 @@ export const useAuthStore = create<AuthState>()(
 
       logout: () => {
         removeAccessToken();
+        useChatStore.getState().reset();
         set({
           user: null,
           profile: null,

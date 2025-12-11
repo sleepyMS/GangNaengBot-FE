@@ -30,6 +30,7 @@ interface ChatState {
   addMessage: (message: MessageItem) => void;
   clearCurrentSession: () => void;
   clearError: () => void;
+  reset: () => void;
 }
 
 export const useChatStore = create<ChatState>((set, get) => ({
@@ -373,4 +374,18 @@ export const useChatStore = create<ChatState>((set, get) => ({
   },
 
   clearError: () => set({ error: null }),
+
+  reset: () => {
+    pendingPrefetches.clear();
+    set({
+      sessions: [],
+      currentSessionId: null,
+      guestUserId: null,
+      messages: [],
+      messageCache: new Map(),
+      isLoading: true,
+      isSending: false,
+      error: null,
+    });
+  },
 }));

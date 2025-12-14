@@ -15,6 +15,7 @@ import {
 } from "lucide-react";
 import { useUIStore, useChatStore, useAuthStore, useToastStore } from "@/store";
 import { AlertModal, SwipeableItem, Spinner } from "@/components/common";
+import { UNIVERSITY_TRANS_KEYS } from "@/constants/universityTranslation";
 
 export const Sidebar = () => {
   const { t } = useTranslation();
@@ -445,9 +446,9 @@ export const Sidebar = () => {
                 )}
               </div>
               {/* 이메일 - 펼쳐졌을 때만 표시 */}
-              <span
+              <div
                 className={`
-                text-sm truncate text-left
+                flex flex-col text-left overflow-hidden
                 transition-all duration-300 ease-in-out
                 ${isProfileModalOpen ? "text-white" : "text-gray-600"}
                 ${
@@ -457,8 +458,34 @@ export const Sidebar = () => {
                 }
               `}
               >
-                {profile?.profile_name || user?.email || "hello@gmail.com"}
-              </span>
+                {profile?.profile_name ? (
+                  <div className="flex flex-col min-w-0">
+                    {/* 전공 */}
+                    {profile.major && (
+                      <span className="text-xs opacity-70 truncate mb-0.5">
+                        {UNIVERSITY_TRANS_KEYS[profile.major]
+                          ? t(UNIVERSITY_TRANS_KEYS[profile.major])
+                          : profile.major}
+                      </span>
+                    )}
+                    {/* 학번 & 이름 */}
+                    <div className="flex items-center gap-1.5 truncate">
+                      {profile.student_id && (
+                        <span className="text-sm font-normal opacity-80 flex-shrink-0">
+                          {profile.student_id}
+                        </span>
+                      )}
+                      <span className="text-sm font-medium truncate">
+                        {profile.profile_name}
+                      </span>
+                    </div>
+                  </div>
+                ) : (
+                  <span className="text-sm truncate">
+                    {user?.email || "hello@gmail.com"}
+                  </span>
+                )}
+              </div>
             </button>
 
             {/* Popover */}

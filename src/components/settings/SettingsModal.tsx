@@ -198,29 +198,33 @@ export const SettingsModal = () => {
             <div className="w-10 h-1 bg-gray-300 dark:bg-gray-600 rounded-full" />
           </div>
 
-          {/* Tab Navigation - 가로 스크롤 유지, 스크롤바만 숨김 */}
-          <div className="flex gap-2 px-4 pt-2 pb-4 overflow-x-auto scrollbar-hide">
-            {TABS.map((tab) => (
-              <button
-                key={tab.id}
-                onClick={() => setActiveSettingsTab(tab.id)}
-                className={`
-                  flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all
+          {/* Tab Navigation - 중앙 정렬 */}
+          <div className="flex justify-center w-full border-b border-gray-100 dark:border-slate-800">
+            <div className="flex gap-2 px-4 pt-2 pb-4 overflow-x-auto scrollbar-hide max-w-full">
+              {TABS.map((tab) => (
+                <button
+                  key={tab.id}
+                  onClick={() => setActiveSettingsTab(tab.id)}
+                  className={`
+                  flex items-center gap-2 px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all flex-shrink-0
                   ${
                     activeSettingsTab === tab.id
                       ? "bg-gradient-to-r from-primary-500 to-blue-600 text-white shadow-md"
                       : "bg-gray-100 dark:bg-slate-800 text-gray-600 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-slate-700"
                   }
                 `}
-              >
-                {tab.icon}
-                {t(tab.labelKey)}
-              </button>
-            ))}
+                >
+                  {tab.icon}
+                  {t(tab.labelKey)}
+                </button>
+              ))}
+            </div>
           </div>
 
-          {/* Content - 스크롤 제거, 하단 safe area 여백 */}
-          <div className="px-4 pb-8">{renderTabContent()}</div>
+          {/* Content - 중앙 정렬 */}
+          <div className="px-4 pb-8 flex flex-col items-center w-full">
+            <div className="w-full max-w-md">{renderTabContent()}</div>
+          </div>
         </div>
       </div>
     );

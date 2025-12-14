@@ -49,12 +49,17 @@ export const ProfileTab = ({ isMobile = false }: ProfileTabProps) => {
   ) => {
     const { name, value } = e.target;
     setForm((prev) => {
+      let newValue: string | number = value;
+
+      if (name === "student_id") {
+        newValue = value.replace(/[^a-zA-Z0-9]/g, "");
+      } else if (name === "current_grade" || name === "current_semester") {
+        newValue = Number(value);
+      }
+
       const updated = {
         ...prev,
-        [name]:
-          name === "current_grade" || name === "current_semester"
-            ? Number(value)
-            : value,
+        [name]: newValue,
       };
       if (name === "college") {
         updated.department = "";

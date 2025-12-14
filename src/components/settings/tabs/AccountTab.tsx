@@ -2,19 +2,23 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import { LogOut, Mail, User } from "lucide-react";
-import { useAuthStore, useUIStore } from "@/store";
+import { useAuthStore, useUIStore, useToastStore } from "@/store";
 import { AlertModal } from "@/components/common";
 
 export const AccountTab = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const { user, isAuthenticated, logout } = useAuthStore();
-  const { closeSettingsModal } = useUIStore();
+  const { closeSettingsModal, isMobile } = useUIStore();
+  const { addToast } = useToastStore();
   const [showLogoutConfirm, setShowLogoutConfirm] = useState(false);
 
   const handleLogout = () => {
     logout();
     closeSettingsModal();
+    if (!isMobile) {
+      addToast("success", t("auth.logoutSuccess"));
+    }
     navigate("/login");
   };
 

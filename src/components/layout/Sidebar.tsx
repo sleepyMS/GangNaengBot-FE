@@ -505,6 +505,9 @@ export const Sidebar = () => {
                   onClick={() => {
                     setIsPopoverOpen(false);
                     logout();
+                    if (!isMobile) {
+                      addToast("success", t("auth.logoutSuccess"));
+                    }
                     navigate("/login");
                   }}
                   className="popover-item w-[calc(100%-8px)] mx-1 flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-primary-50 transition-colors group"

@@ -193,7 +193,9 @@
   },
   "auth": {
     "googleLogin": "Googleで続ける",
-    "guestLogin": "ゲストとして続ける"
+    "guestLogin": "ゲストとして続ける",
+    "loginSuccess": "ログインしました。",
+    "logoutSuccess": "ログアウトしました。"
   },
   "welcome": {
     "title": "GangNaengBotへようこそ！",

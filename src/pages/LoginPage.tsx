@@ -1,7 +1,12 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import { useAuthStore, useSettingsStore } from "@/store";
+import {
+  useAuthStore,
+  useSettingsStore,
+  useUIStore,
+  useToastStore,
+} from "@/store";
 import { authService } from "@/api";
 
 export const LoginPage = () => {
@@ -9,16 +14,9 @@ export const LoginPage = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const { login, isAuthenticated, isLoading, logout, error } = useAuthStore();
+  const { isMobile } = useUIStore();
+  const { addToast } = useToastStore();
   const { resolvedTheme } = useSettingsStore();
-  const [isMobile, setIsMobile] = useState(false);
-
-  // 모바일 감지
-  useEffect(() => {
-    const checkMobile = () => setIsMobile(window.innerWidth < 768);
-    checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
-  }, []);
 
   // OAuth 콜백 처리
   useEffect(() => {
@@ -42,13 +40,17 @@ export const LoginPage = () => {
         p?.college &&
         p?.department &&
         p?.major;
+
       if (hasProfile) {
+        if (!isMobile) {
+          addToast("success", t("auth.loginSuccess"));
+        }
         navigate("/", { replace: true });
       } else {
         navigate("/onboarding", { replace: true });
       }
     }
-  }, [isAuthenticated, navigate]);
+  }, [isAuthenticated, navigate, isMobile, addToast, t]);
 
   const handleGoogleLogin = () => {
     const redirectUri = `${window.location.origin}/login`;

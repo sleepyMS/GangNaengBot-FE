@@ -193,7 +193,9 @@
   },
   "auth": {
     "googleLogin": "通过 Google 继续",
-    "guestLogin": "以访客身份继续"
+    "guestLogin": "以访客身份继续",
+    "loginSuccess": "登录成功。",
+    "logoutSuccess": "注销成功。"
   },
   "welcome": {
     "title": "欢迎使用GangNaengBot！",

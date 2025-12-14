@@ -193,7 +193,9 @@
   },
   "auth": {
     "googleLogin": "Continue with Google",
-    "guestLogin": "Continue as Guest"
+    "guestLogin": "Continue as Guest",
+    "loginSuccess": "Logged in successfully.",
+    "logoutSuccess": "Logged out successfully."
   },
   "welcome": {
     "title": "Welcome to GangNaengBot!",

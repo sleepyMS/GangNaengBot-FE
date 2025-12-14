@@ -28,7 +28,6 @@ export const Sidebar = () => {
   const {
     sessions,
     currentSessionId,
-    selectSession,
     prefetchSession,
     deleteSession,
     fetchSessions,
@@ -70,7 +69,8 @@ export const Sidebar = () => {
       clearTimeout(prefetchTimeoutRef.current);
       prefetchTimeoutRef.current = null;
     }
-    await selectSession(sessionId);
+    // URL 네비게이션으로 세션 선택 (ChatPage에서 URL 변경 감지하여 처리)
+    navigate(`/chat/${sessionId}`);
     if (isMobile) setSidebarOpen(false);
   };
 

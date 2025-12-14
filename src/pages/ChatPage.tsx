@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { MainLayout } from "@/components/layout";
 import {
   ChatInput,
@@ -8,8 +10,41 @@ import {
 import { useChatStore, useUIStore } from "@/store";
 
 export const ChatPage = () => {
-  const { messages, currentSessionId, isLoading } = useChatStore();
+  const { sessionId } = useParams<{ sessionId?: string }>();
+  const navigate = useNavigate();
+  const { messages, currentSessionId, isLoading, selectSession } =
+    useChatStore();
   const { isMobile } = useUIStore();
+
+  // URL의 sessionId가 변경되면 해당 세션 로드
+  useEffect(() => {
+    if (sessionId && sessionId !== currentSessionId) {
+      // URL에 세션 ID가 있으면 해당 세션 선택
+      selectSession(sessionId);
+    } else if (!sessionId && currentSessionId) {
+      // URL에 세션 ID가 없는데 현재 세션이 있으면 URL 업데이트
+      navigate(`/chat/${currentSessionId}`, { replace: true });
+    }
+  }, [sessionId]);
+
+  // 현재 세션이 변경되면 URL 업데이트
+  useEffect(() => {
+    if (currentSessionId && !sessionId) {
+      // 세션이 새로 생성되었을 때 URL 업데이트
+      navigate(`/chat/${currentSessionId}`, { replace: true });
+    } else if (
+      currentSessionId &&
+      sessionId &&
+      currentSessionId !== sessionId
+    ) {
+      // 사이드바에서 다른 세션 선택 시 URL 업데이트
+      navigate(`/chat/${currentSessionId}`, { replace: true });
+    } else if (!currentSessionId && sessionId) {
+      // 세션이 클리어되면 홈으로 이동
+      navigate("/", { replace: true });
+    }
+  }, [currentSessionId]);
+
   // 메시지가 있거나, 세션이 선택되어 로딩 중일 때 MessageList 표시
   const showMessageList =
     messages.length > 0 || (currentSessionId && isLoading);

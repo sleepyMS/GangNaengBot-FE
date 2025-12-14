@@ -8,7 +8,7 @@ export const LoginPage = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
-  const { login, isAuthenticated, isLoading, logout } = useAuthStore();
+  const { login, isAuthenticated, isLoading, logout, error } = useAuthStore();
   const { resolvedTheme } = useSettingsStore();
   const [isMobile, setIsMobile] = useState(false);
 
@@ -62,8 +62,13 @@ export const LoginPage = () => {
   };
 
   const isDark = resolvedTheme === "dark";
+  const token = searchParams.get("token");
 
-  if (isLoading) {
+  // 토큰이 있거나(로그인 진입), 로딩 중이거나, 이미 로그인된 경우(리다이렉트 대기) 로딩 표시
+  // 단, 에러가 있으면 로그인 페이지 표시
+  const shouldShowLoading = isLoading || (!!token && !error) || isAuthenticated;
+
+  if (shouldShowLoading) {
     return (
       <div
         className={`min-h-screen flex items-center justify-center bg-gradient-to-b ${

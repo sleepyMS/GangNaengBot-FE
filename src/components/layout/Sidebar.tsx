@@ -155,7 +155,7 @@ export const Sidebar = () => {
             isMobile
               ? isSidebarOpen
                 ? "w-[clamp(240px,80%,320px)] translate-x-0"
-                : "w-0 -translate-x-full"
+                : "w-[clamp(240px,80%,320px)] -translate-x-full"
               : isSidebarOpen
               ? "w-[clamp(240px,20vw,320px)]"
               : "w-16"

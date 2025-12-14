@@ -136,7 +136,7 @@ export const PrivacyPage = () => {
                         자동 수집
                       </td>
                       <td className="border border-gray-200 px-3 py-2">
-                        접속 IP, 접속 일시, 브라우저 정보, 디바이스 정보, 쿠키
+                        접속 일시, 브라우저 정보, 디바이스 정보 (서버 로그)
                       </td>
                       <td className="border border-gray-200 px-3 py-2">필수</td>
                     </tr>
@@ -145,10 +145,12 @@ export const PrivacyPage = () => {
               </div>
               <div className="bg-yellow-50/70 dark:bg-yellow-900/20 rounded-xl p-4 border border-yellow-200 dark:border-yellow-800 mt-4">
                 <p className="text-yellow-800 dark:text-yellow-200 text-sm">
-                  <strong>⚠️ 주의:</strong> 서비스 이용 시 민감한
-                  개인정보(주민등록번호, 금융정보, 건강정보, 비밀번호 등)를 AI
-                  대화에 입력하지 마시기 바랍니다. 입력된 민감정보에 대한 책임은
-                  이용자에게 있습니다.
+                  <strong className="text-yellow-800 dark:text-yellow-200">
+                    ⚠️ 주의:
+                  </strong>{" "}
+                  서비스 이용 시 민감한 개인정보(주민등록번호, 금융정보,
+                  건강정보, 비밀번호 등)를 AI 대화에 입력하지 마시기 바랍니다.
+                  입력된 민감정보에 대한 책임은 이용자에게 있습니다.
                 </p>
               </div>
             </div>
@@ -361,10 +363,10 @@ export const PrivacyPage = () => {
                     </tr>
                     <tr className="bg-gray-50">
                       <td className="border border-gray-200 px-3 py-2">
-                        클라우드 서비스 제공업체
+                        Google Cloud Platform
                       </td>
                       <td className="border border-gray-200 px-3 py-2">
-                        서버 호스팅 및 데이터 저장
+                        서버 호스팅 및 데이터 저장 (Google Cloud Run)
                       </td>
                     </tr>
                     <tr>
@@ -538,7 +540,7 @@ export const PrivacyPage = () => {
             </div>
           </section>
 
-          {/* 제12조: 쿠키 */}
+          {/* 제12조: 로컬 저장소 */}
           <section>
             <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">
               {t("privacy.articles.cookies")}
@@ -546,58 +548,61 @@ export const PrivacyPage = () => {
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-3">
               <p>
                 서비스는 이용자에게 개별적인 맞춤 서비스를 제공하기 위해
-                이용정보를 저장하고 수시로 불러오는 '쿠키(Cookie)'를 사용합니다.
+                브라우저의 '로컬 저장소(Local Storage)'를 사용합니다. 로컬
+                저장소는 쿠키와 달리 서버로 자동 전송되지 않으며, 이용자의
+                브라우저에만 저장됩니다.
               </p>
               <div className="bg-blue-50 dark:bg-blue-900/30 rounded-xl p-4 mt-3">
                 <h3 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
-                  사용하는 쿠키
+                  저장되는 항목
                 </h3>
                 <ul className="space-y-2 text-blue-700 dark:text-blue-300 text-sm">
                   <li>
-                    <strong>• 인증 토큰 쿠키</strong>
-                    <span className="ml-2 text-xs bg-blue-100 px-2 py-0.5 rounded">
-                      HttpOnly, Secure, SameSite
-                    </span>
-                    <p className="ml-4 text-blue-600 text-xs mt-1">
-                      로그인 상태 유지 및 보안 인증에 사용
+                    <strong>• 인증 토큰 (access_token)</strong>
+                    <p className="ml-4 text-blue-600 dark:text-blue-400 text-xs mt-1">
+                      로그인 상태 유지 및 API 인증에 사용
                     </p>
                   </li>
                   <li>
-                    <strong>• 리프레시 토큰 쿠키</strong>
-                    <span className="ml-2 text-xs bg-blue-100 px-2 py-0.5 rounded">
-                      HttpOnly, Secure, SameSite
-                    </span>
-                    <p className="ml-4 text-blue-600 text-xs mt-1">
-                      인증 토큰 갱신에 사용
+                    <strong>• 사용자 정보 캐시 (auth-storage)</strong>
+                    <p className="ml-4 text-blue-600 dark:text-blue-400 text-xs mt-1">
+                      사용자 프로필 및 인증 상태 캐싱
                     </p>
                   </li>
                   <li>
-                    <strong>• 세션 쿠키</strong>
-                    <p className="ml-4 text-blue-600 text-xs mt-1">
-                      브라우저 종료 시 자동 삭제
+                    <strong>• 설정 정보 (gangnaeng-settings)</strong>
+                    <p className="ml-4 text-blue-600 dark:text-blue-400 text-xs mt-1">
+                      테마(다크/라이트 모드), 선호 언어 설정
+                    </p>
+                  </li>
+                  <li>
+                    <strong>• 언어 감지 캐시 (i18next)</strong>
+                    <p className="ml-4 text-blue-600 dark:text-blue-400 text-xs mt-1">
+                      다국어 지원을 위한 언어 감지 결과 저장
                     </p>
                   </li>
                 </ul>
               </div>
               <div className="mt-4">
-                <h3 className="font-semibold text-gray-700 mb-2">
-                  쿠키 설정 거부 방법
+                <h3 className="font-semibold text-gray-700 dark:text-gray-300 mb-2">
+                  로컬 저장소 삭제 방법
                 </h3>
                 <p className="text-sm">
-                  이용자는 웹 브라우저 설정을 통해 쿠키 저장을 거부할 수
-                  있습니다. 다만, 쿠키 저장을 거부할 경우 로그인이 필요한 서비스
-                  이용에 어려움이 있을 수 있습니다.
+                  이용자는 브라우저 설정 또는 개발자 도구를 통해 로컬 저장소
+                  데이터를 삭제할 수 있습니다. 삭제 시 로그인 상태가 해제되며,
+                  설정이 초기화됩니다.
                 </p>
                 <ul className="space-y-1 text-sm mt-2 ml-2">
                   <li>
-                    • Chrome: 설정 → 개인정보 및 보안 → 쿠키 및 기타 사이트
-                    데이터
+                    • Chrome: 개발자 도구(F12) → Application → Local Storage →
+                    해당 사이트 선택 후 삭제
                   </li>
                   <li>
-                    • Safari: 환경설정 → 개인정보 보호 → 쿠키 및 웹사이트 데이터
+                    • Safari: 개발자 도구 → Storage → Local Storage에서 삭제
                   </li>
                   <li>
-                    • Firefox: 설정 → 개인정보 및 보안 → 쿠키 및 사이트 데이터
+                    • Firefox: 개발자 도구(F12) → Storage → Local Storage에서
+                    삭제
                   </li>
                 </ul>
               </div>
@@ -622,7 +627,7 @@ export const PrivacyPage = () => {
                   <ul className="space-y-1 list-disc list-inside text-sm">
                     <li>SSL/TLS를 통한 데이터 암호화 전송</li>
                     <li>민감 정보 암호화 저장 (해시, AES)</li>
-                    <li>인증 토큰 HttpOnly 쿠키 보호</li>
+                    <li>JWT 토큰 기반 인증 시스템</li>
                     <li>보안 취약점 정기 점검</li>
                     <li>침입 탐지 및 방지 시스템 운영</li>
                   </ul>

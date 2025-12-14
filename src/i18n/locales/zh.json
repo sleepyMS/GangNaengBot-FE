@@ -93,7 +93,8 @@
       "profile": "个人资料",
       "account": "账户",
       "theme": "主题",
-      "language": "语言"
+      "language": "语言",
+      "feedback": "反馈"
     },
     "profile": {
       "title": "个人资料设置",
@@ -134,6 +135,20 @@
       "japanese": "日语",
       "chinese": "中文",
       "current": "当前语言"
+    },
+    "feedback": {
+      "title": "发送反馈",
+      "description": "请分享您的建议或报告bug，帮助我们改进服务。",
+      "from": "发送人",
+      "subject": "标题",
+      "subjectPlaceholder": "请输入反馈标题",
+      "message": "内容",
+      "messagePlaceholder": "请输入反馈内容",
+      "send": "发送",
+      "sending": "发送中...",
+      "sendSuccess": "反馈发送成功，感谢您！",
+      "sendError": "发送失败，请稍后重试。",
+      "emptyFields": "请填写标题和内容。"
     }
   },
   "chat": {

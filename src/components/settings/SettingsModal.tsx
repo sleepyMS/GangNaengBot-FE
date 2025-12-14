@@ -1,13 +1,14 @@
 import { useState, useEffect, useRef } from "react";
-import { X, User, Settings, Palette, Globe } from "lucide-react";
+import { X, User, Settings, Palette, Globe, MessageSquare } from "lucide-react";
 import { useUIStore } from "@/store";
 import { useTranslation } from "react-i18next";
 import { ProfileTab } from "./tabs/ProfileTab";
 import { AccountTab } from "./tabs/AccountTab";
 import { ThemeTab } from "./tabs/ThemeTab";
 import { LanguageTab } from "./tabs/LanguageTab";
+import { FeedbackTab } from "./tabs/FeedbackTab";
 
-type TabId = "profile" | "account" | "theme" | "language";
+type TabId = "profile" | "account" | "theme" | "language" | "feedback";
 
 interface Tab {
   id: TabId;
@@ -32,11 +33,21 @@ const TABS: Tab[] = [
     labelKey: "settings.tabs.language",
     icon: <Globe size={18} />,
   },
+  {
+    id: "feedback",
+    labelKey: "settings.tabs.feedback",
+    icon: <MessageSquare size={18} />,
+  },
 ];
 
 export const SettingsModal = () => {
   const { t } = useTranslation();
-  const { isSettingsModalOpen, closeSettingsModal } = useUIStore();
+  const {
+    isSettingsModalOpen,
+    closeSettingsModal,
+    settingsInitialTab,
+    setSettingsInitialTab,
+  } = useUIStore();
   const [activeTab, setActiveTab] = useState<TabId>("profile");
   const [isMobile, setIsMobile] = useState(false);
 
@@ -69,13 +80,18 @@ export const SettingsModal = () => {
     };
   }, [isSettingsModalOpen, closeSettingsModal]);
 
-  // 모달 열릴 때 드래그 상태 초기화
+  // 모달 열릴 때 드래그 상태 초기화 및 초기 탭 설정
   useEffect(() => {
     if (isSettingsModalOpen) {
       setDragY(0);
       setIsDragging(false);
+      // 초기 탭 설정 (피드백 버튼에서 열 때)
+      if (settingsInitialTab) {
+        setActiveTab(settingsInitialTab as TabId);
+        setSettingsInitialTab(null);
+      }
     }
-  }, [isSettingsModalOpen]);
+  }, [isSettingsModalOpen, settingsInitialTab, setSettingsInitialTab]);
 
   // 드래그 시작
   const handleDragStart = (clientY: number) => {
@@ -147,6 +163,8 @@ export const SettingsModal = () => {
         return <ThemeTab />;
       case "language":
         return <LanguageTab />;
+      case "feedback":
+        return <FeedbackTab />;
       default:
         return null;
     }

@@ -93,7 +93,8 @@
       "profile": "Profile",
       "account": "Account",
       "theme": "Theme",
-      "language": "Language"
+      "language": "Language",
+      "feedback": "Feedback"
     },
     "profile": {
       "title": "Profile Settings",
@@ -134,6 +135,20 @@
       "japanese": "日本語",
       "chinese": "中文",
       "current": "Current Language"
+    },
+    "feedback": {
+      "title": "Send Feedback",
+      "description": "Share your suggestions or report bugs to help us improve.",
+      "from": "From",
+      "subject": "Subject",
+      "subjectPlaceholder": "Enter feedback subject",
+      "message": "Message",
+      "messagePlaceholder": "Enter your feedback",
+      "send": "Send",
+      "sending": "Sending...",
+      "sendSuccess": "Feedback sent successfully. Thank you!",
+      "sendError": "Failed to send. Please try again later.",
+      "emptyFields": "Please fill in both subject and message."
     }
   },
   "chat": {

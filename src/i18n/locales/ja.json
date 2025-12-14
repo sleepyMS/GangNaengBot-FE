@@ -93,7 +93,8 @@
       "profile": "プロフィール",
       "account": "アカウント",
       "theme": "テーマ",
-      "language": "言語"
+      "language": "言語",
+      "feedback": "フィードバック"
     },
     "profile": {
       "title": "プロフィール設定",
@@ -134,6 +135,20 @@
       "japanese": "日本語",
       "chinese": "中国語",
       "current": "現在の言語"
+    },
+    "feedback": {
+      "title": "フィードバックを送る",
+      "description": "サービス改善のためのご意見やバグ報告をお送りください。",
+      "from": "送信者",
+      "subject": "件名",
+      "subjectPlaceholder": "フィードバックの件名を入力",
+      "message": "内容",
+      "messagePlaceholder": "フィードバックの内容を入力",
+      "send": "送信",
+      "sending": "送信中...",
+      "sendSuccess": "フィードバックが正常に送信されました。ありがとうございます！",
+      "sendError": "送信に失敗しました。しばらくしてからもう一度お試しください。",
+      "emptyFields": "件名と内容を両方入力してください。"
     }
   },
   "chat": {

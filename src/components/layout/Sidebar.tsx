@@ -11,6 +11,7 @@ import {
   Trash2,
   Settings,
   LogOut,
+  MessageSquarePlus,
 } from "lucide-react";
 import { useUIStore, useChatStore, useAuthStore, useToastStore } from "@/store";
 import { AlertModal, SwipeableItem, Spinner } from "@/components/common";
@@ -24,6 +25,7 @@ export const Sidebar = () => {
     isMobile,
     openProfileModal,
     isProfileModalOpen,
+    openSettingsModal,
   } = useUIStore();
   const {
     sessions,
@@ -485,6 +487,19 @@ export const Sidebar = () => {
                     className="text-gray-500 dark:text-gray-400 group-hover:text-primary-500"
                   />
                   <span className="text-sm">{t("settings.title")}</span>
+                </button>
+                <button
+                  onClick={() => {
+                    setIsPopoverOpen(false);
+                    openSettingsModal("feedback");
+                  }}
+                  className="popover-item w-[calc(100%-8px)] mx-1 flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-primary-50 transition-colors group"
+                >
+                  <MessageSquarePlus
+                    size={18}
+                    className="text-gray-500 dark:text-gray-400 group-hover:text-primary-500"
+                  />
+                  <span className="text-sm">{t("settings.tabs.feedback")}</span>
                 </button>
                 <button
                   onClick={() => {

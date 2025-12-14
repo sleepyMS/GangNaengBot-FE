@@ -153,6 +153,16 @@ export const ProfileTab = ({ isMobile = false }: ProfileTabProps) => {
   const departmentOptions = getTranslatedOptions(departmentList);
   const majorOptions = getTranslatedOptions(majorList);
 
+  // 모든 필드가 채워져 있는지 확인
+  const isFormValid =
+    form.profile_name.trim() !== "" &&
+    form.student_id.trim() !== "" &&
+    form.college !== "" &&
+    form.department !== "" &&
+    form.major !== "" &&
+    form.current_grade > 0 &&
+    form.current_semester > 0;
+
   const inputStyle =
     "flex-1 min-w-0 px-4 py-3 bg-gray-100/80 dark:bg-slate-800 rounded-xl focus:outline-none focus:ring-2 focus:ring-primary-400/30 text-gray-800 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500 transition-all";
 
@@ -304,12 +314,23 @@ export const ProfileTab = ({ isMobile = false }: ProfileTabProps) => {
             <div className="flex justify-end pt-4">
               <button
                 type="submit"
-                disabled={isLoading}
-                className="px-8 py-3 text-white font-medium rounded-full shadow-lg transition-all disabled:opacity-50 hover:scale-105 active:scale-95"
+                disabled={isLoading || !isFormValid}
+                className={`
+                  px-8 py-3 text-white font-medium rounded-full shadow-lg transition-all
+                  hover:scale-105 active:scale-95
+                  ${
+                    isLoading || !isFormValid
+                      ? "opacity-60 cursor-not-allowed"
+                      : ""
+                  }
+                `}
                 style={{
                   background:
                     "radial-gradient(63.37% 63.37% at 50% 50%, #4E92FF 0%, rgba(78, 146, 255, 0.5) 100%)",
-                  boxShadow: "0px 0px 40px 0px rgba(105, 162, 255, 0.24)",
+                  boxShadow:
+                    isLoading || !isFormValid
+                      ? "0px 0px 24px 0px rgba(105, 162, 255, 0.3)"
+                      : "0px 0px 40px 0px rgba(105, 162, 255, 0.24)",
                 }}
               >
                 {isLoading ? t("settings.profile.saving") : t("common.save")}
@@ -324,12 +345,21 @@ export const ProfileTab = ({ isMobile = false }: ProfileTabProps) => {
         <div className="sticky bottom-0 left-0 right-0 pt-4 pb-2 bg-gradient-to-t from-white via-white to-transparent dark:from-slate-900 dark:via-slate-900">
           <button
             type="submit"
-            disabled={isLoading}
-            className="w-full px-8 py-3 text-white font-medium rounded-full shadow-lg transition-all disabled:opacity-50 hover:scale-105 active:scale-95"
+            disabled={isLoading || !isFormValid}
+            className={`
+              w-full px-8 py-3 text-white font-medium rounded-full shadow-lg transition-all
+              hover:scale-105 active:scale-95
+              ${
+                isLoading || !isFormValid ? "opacity-60 cursor-not-allowed" : ""
+              }
+            `}
             style={{
               background:
                 "radial-gradient(63.37% 63.37% at 50% 50%, #4E92FF 0%, rgba(78, 146, 255, 0.5) 100%)",
-              boxShadow: "0px 0px 40px 0px rgba(105, 162, 255, 0.24)",
+              boxShadow:
+                isLoading || !isFormValid
+                  ? "0px 0px 24px 0px rgba(105, 162, 255, 0.3)"
+                  : "0px 0px 40px 0px rgba(105, 162, 255, 0.24)",
             }}
           >
             {isLoading ? t("settings.profile.saving") : t("common.save")}

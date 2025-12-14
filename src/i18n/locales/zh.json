@@ -70,7 +70,8 @@
       "sendMessage": "消息发送失败。",
       "login": "登录失败。",
       "profileLoad": "无法加载个人资料。",
-      "profileSave": "无法保存个人资料。"
+      "profileSave": "无法保存个人资料。",
+      "emptyResponseFallback": "抱歉，我没有理解您的问题。能否换个方式再问一次？🙏"
     }
   },
   "settings": {

@@ -70,7 +70,8 @@
       "sendMessage": "Failed to send message.",
       "login": "Login failed.",
       "profileLoad": "Failed to load profile.",
-      "profileSave": "Failed to save profile."
+      "profileSave": "Failed to save profile.",
+      "emptyResponseFallback": "Sorry, I couldn't understand your question. Could you please rephrase it? 🙏"
     }
   },
   "settings": {

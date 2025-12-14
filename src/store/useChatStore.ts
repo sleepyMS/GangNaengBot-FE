@@ -313,9 +313,9 @@ export const useChatStore = create<ChatState>((set, get) => ({
         responseText = retryResponse.text;
       }
 
-      // 5번 다 실패하면 에러 처리
+      // 5번 다 실패하면 친절한 재질문 안내 메시지로 응답
       if (!responseText?.trim()) {
-        throw new Error(i18n.t("store.error.aiResponse"));
+        responseText = i18n.t("store.error.emptyResponseFallback");
       }
 
       // AI 응답 추가

@@ -70,7 +70,8 @@
       "sendMessage": "메시지 전송에 실패했습니다.",
       "login": "로그인에 실패했습니다.",
       "profileLoad": "프로필을 불러오지 못했습니다.",
-      "profileSave": "프로필 저장에 실패했습니다."
+      "profileSave": "프로필 저장에 실패했습니다.",
+      "emptyResponseFallback": "죄송해요, 질문을 이해하지 못했어요. 다른 방식으로 다시 질문해 주시겠어요? 🙏"
     }
   },
   "settings": {

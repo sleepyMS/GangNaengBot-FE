@@ -64,7 +64,7 @@ export const MessageList = () => {
   }
 
   return (
-    <div className="flex-1 overflow-y-auto px-4 py-6">
+    <div className="flex-1 overflow-y-auto px-4 pt-14 md:pt-6 pb-6">
       <div className="max-w-3xl mx-auto space-y-6">
         {filteredMessages.map((message, index) => (
           <ChatBubble key={index} message={message} />

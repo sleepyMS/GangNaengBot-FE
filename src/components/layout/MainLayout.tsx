@@ -49,7 +49,9 @@ export const MainLayout = ({ children }: MainLayoutProps) => {
             className="flex items-center gap-1.5 px-3 py-2 rounded-xl glass-sidebar text-gray-600 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-slate-700/50 transition-all hover:scale-105 active:scale-95 text-sm font-medium"
           >
             <MessageSquarePlus size={18} />
-            <span>{t("settings.tabs.feedback")}</span>
+            <span className={`${isMobile ? "hidden" : "inline"}`}>
+              {t("settings.tabs.feedback")}
+            </span>
           </button>
           {showLanguageSwitcher && <LanguageSwitcher />}
         </div>

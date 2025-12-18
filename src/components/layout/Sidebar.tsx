@@ -176,7 +176,7 @@ export const Sidebar = () => {
             {/* Logo - 고정 레이아웃, 사이드바 접히면 잘려나감 */}
             <div
               className={`
-              flex items-center gap-2 overflow-hidden whitespace-nowrap flex-1 min-w-0
+              flex items-center gap-1 overflow-hidden whitespace-nowrap flex-1 min-w-0
               transition-opacity duration-300
               ${isSidebarOpen ? "opacity-100" : "opacity-0 pointer-events-none"}
             `}
@@ -184,9 +184,9 @@ export const Sidebar = () => {
               <img
                 src="/assets/images/logo.svg"
                 alt="강냉봇 로고"
-                className="h-6 w-auto flex-shrink-0"
+                className="h-9 w-auto flex-shrink-0"
               />
-              <span className="text-sm font-medium text-gray-600 whitespace-nowrap">
+              <span className="text-sm font-medium text-gray-600 whitespace-nowrap leading-none">
                 gangnaengbot
               </span>
             </div>

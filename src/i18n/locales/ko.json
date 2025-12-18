@@ -189,7 +189,9 @@
     "deleteConfirm": "이 대화를 삭제하시겠습니까?",
     "refresh": "새로고침",
     "deleteWarning": "삭제된 대화는 복구할 수 없습니다.",
-    "deleteSuccess": "대화가 삭제되었습니다."
+    "deleteSuccess": "대화가 삭제되었습니다.",
+    "guestGuideLine1": "로그인이 필요해요",
+    "guestGuideLine2": "대화 기록을 저장할 수 있어요!"
   },
   "auth": {
     "googleLogin": "Google 계정으로 계속하기",

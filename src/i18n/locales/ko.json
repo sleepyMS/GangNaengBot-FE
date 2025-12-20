@@ -125,7 +125,8 @@
       "logout": "로그아웃",
       "logoutConfirm": "정말 로그아웃 하시겠습니까?",
       "guestMode": "게스트 모드",
-      "guestDescription": "로그인하면 대화 기록을 저장할 수 있어요"
+      "guestDescription": "로그인하면 대화 기록을 저장할 수 있어요",
+      "login": "로그인"
     },
     "theme": {
       "title": "테마 설정",

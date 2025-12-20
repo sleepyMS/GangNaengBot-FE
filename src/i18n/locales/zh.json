@@ -125,7 +125,8 @@
       "logout": "退出登录",
       "logoutConfirm": "确定要退出登录吗？",
       "guestMode": "访客模式",
-      "guestDescription": "登录以保存您的对话记录"
+      "guestDescription": "登录以保存您的对话记录",
+      "login": "登录"
     },
     "theme": {
       "title": "主题设置",

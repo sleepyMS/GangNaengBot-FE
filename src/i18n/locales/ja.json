@@ -125,7 +125,8 @@
       "logout": "ログアウト",
       "logoutConfirm": "ログアウトしますか？",
       "guestMode": "ゲストモード",
-      "guestDescription": "ログインして会話履歴を保存しましょう"
+      "guestDescription": "ログインして会話履歴を保存しましょう",
+      "login": "ログイン"
     },
     "theme": {
       "title": "テーマ設定",

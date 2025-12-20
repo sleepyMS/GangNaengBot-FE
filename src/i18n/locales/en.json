@@ -125,7 +125,8 @@
       "logout": "Log out",
       "logoutConfirm": "Are you sure you want to log out?",
       "guestMode": "Guest Mode",
-      "guestDescription": "Sign in to save your chat history"
+      "guestDescription": "Sign in to save your chat history",
+      "login": "Login"
     },
     "theme": {
       "title": "Theme Settings",

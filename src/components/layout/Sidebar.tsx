@@ -11,6 +11,7 @@ import {
   Trash2,
   Settings,
   LogOut,
+  LogIn,
   MessageSquarePlus,
 } from "lucide-react";
 import { useUIStore, useChatStore, useAuthStore, useToastStore } from "@/store";
@@ -531,6 +532,10 @@ export const Sidebar = () => {
                 <button
                   onClick={() => {
                     setIsPopoverOpen(false);
+                    if (!isAuthenticated) {
+                      navigate("/login");
+                      return;
+                    }
                     logout();
                     if (!isMobile) {
                       addToast("success", t("auth.logoutSuccess"));
@@ -539,12 +544,21 @@ export const Sidebar = () => {
                   }}
                   className="popover-item w-[calc(100%-8px)] mx-1 flex items-center gap-3 px-3 py-2.5 rounded-lg text-gray-700 dark:text-gray-200 hover:bg-primary-50 transition-colors group"
                 >
-                  <LogOut
-                    size={18}
-                    className="text-gray-500 dark:text-gray-400 group-hover:text-primary-500"
-                  />
+                  {!isAuthenticated ? (
+                    <LogIn
+                      size={18}
+                      className="text-gray-500 dark:text-gray-400 group-hover:text-primary-500"
+                    />
+                  ) : (
+                    <LogOut
+                      size={18}
+                      className="text-gray-500 dark:text-gray-400 group-hover:text-primary-500"
+                    />
+                  )}
                   <span className="text-sm">
-                    {t("settings.account.logout")}
+                    {!isAuthenticated
+                      ? t("settings.account.login")
+                      : t("settings.account.logout")}
                   </span>
                 </button>
               </div>

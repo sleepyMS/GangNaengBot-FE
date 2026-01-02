@@ -196,7 +196,11 @@
     "deleteWarning": "삭제된 대화는 복구할 수 없습니다.",
     "deleteSuccess": "대화가 삭제되었습니다.",
     "guestGuideLine1": "로그인이 필요해요",
-    "guestGuideLine2": "대화 기록을 저장할 수 있어요!"
+    "guestGuideLine2": "대화 기록을 저장할 수 있어요!",
+    "deleteAll": "모든 대화 삭제",
+    "deleteAllConfirm": "모든 대화를 삭제하시겠습니까?",
+    "deleteAllWarning": "모든 대화 기록이 삭제되며 복구할 수 없습니다.",
+    "deleteAllSuccess": "모든 대화가 삭제되었습니다."
   },
   "auth": {
     "googleLogin": "Google 계정으로 계속하기",

@@ -84,7 +84,8 @@
       "login": "登录失败。",
       "profileLoad": "无法加载个人资料。",
       "profileSave": "无法保存个人资料。",
-      "emptyResponseFallback": "抱歉，我没有理解您的问题。能否换个方式再问一次？🙏"
+      "emptyResponseFallback": "抱歉，我没有理解您的问题。能否换个方式再问一次？🙏",
+      "deleteAccount": "账号删除失败。"
     }
   },
   "settings": {
@@ -126,7 +127,10 @@
       "logoutConfirm": "确定要退出登录吗？",
       "guestMode": "访客模式",
       "guestDescription": "登录以保存您的对话记录",
-      "login": "登录"
+      "login": "登录",
+      "deleteAccount": "注销账号",
+      "deleteAccountConfirm": "确定要注销账号吗？所有数据将被删除且无法恢复。",
+      "deleteAccountSuccess": "账号注销完成。"
     },
     "theme": {
       "title": "主题设置",
@@ -190,7 +194,13 @@
     "deleteConfirm": "确定要删除此对话吗？",
     "refresh": "刷新",
     "deleteWarning": "已删除的对话将无法恢复。",
-    "deleteSuccess": "对话已删除。"
+    "deleteSuccess": "对话已删除。",
+    "guestGuideLine1": "需要登录",
+    "guestGuideLine2": "可以保存对话记录！",
+    "deleteAll": "删除所有对话",
+    "deleteAllConfirm": "确定要删除所有对话吗？",
+    "deleteAllWarning": "所有对话记录将被删除且无法恢复。",
+    "deleteAllSuccess": "所有对话已删除。"
   },
   "auth": {
     "googleLogin": "通过 Google 继续",

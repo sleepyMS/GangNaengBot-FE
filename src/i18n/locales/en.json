@@ -194,7 +194,13 @@
     "deleteConfirm": "Delete this conversation?",
     "refresh": "Refresh",
     "deleteWarning": "Deleted conversations cannot be recovered.",
-    "deleteSuccess": "Conversation deleted."
+    "deleteSuccess": "Conversation deleted.",
+    "guestGuideLine1": "Login Required",
+    "guestGuideLine2": "Save your chat history!",
+    "deleteAll": "Delete All Chats",
+    "deleteAllConfirm": "Delete all conversations?",
+    "deleteAllWarning": "All conversations will be permanently deleted.",
+    "deleteAllSuccess": "All conversations deleted."
   },
   "auth": {
     "googleLogin": "Continue with Google",

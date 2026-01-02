@@ -23,6 +23,7 @@ interface ChatState {
   selectSession: (sessionId: string, forceRefresh?: boolean) => Promise<void>;
   prefetchSession: (sessionId: string) => void; // 호버 프리페칭용
   deleteSession: (sessionId: string) => Promise<void>;
+  deleteAllSessions: () => Promise<void>;
   sendMessage: (
     message: string,
     createSessionIfNeeded?: boolean
@@ -233,6 +234,46 @@ export const useChatStore = create<ChatState>((set, get) => ({
               : i18n.t("store.error.deleteSession"),
         }));
       }
+    }
+  },
+
+  deleteAllSessions: async () => {
+    const { sessions, currentSessionId } = get();
+
+    // 세션이 없으면 아무것도 하지 않음
+    if (sessions.length === 0) return;
+
+    // 1. 낙관적 UI: 모든 세션 즉시 삭제
+    const deletedSessions = [...sessions];
+    const wasCurrentSession = currentSessionId !== null;
+
+    // 모든 캐시 삭제
+    set({
+      sessions: [],
+      currentSessionId: null,
+      messages: [],
+      messageCache: new Map(),
+    });
+
+    try {
+      // 2. 백엔드 API 호출 (모든 세션 삭제)
+      await Promise.all(
+        deletedSessions.map((session) =>
+          sessionsService.deleteSession(session.sid)
+        )
+      );
+    } catch (error) {
+      // 3. 실패 시 롤백
+      set(() => ({
+        sessions: deletedSessions,
+        currentSessionId: wasCurrentSession
+          ? deletedSessions[0]?.sid || null
+          : null,
+        error:
+          error instanceof Error
+            ? error.message
+            : i18n.t("store.error.deleteSession"),
+      }));
     }
   },
 

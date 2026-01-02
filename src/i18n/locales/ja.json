@@ -84,7 +84,8 @@
       "login": "ログインに失敗しました。",
       "profileLoad": "プロフィールの読み込みに失敗しました。",
       "profileSave": "プロフィールの保存に失敗しました。",
-      "emptyResponseFallback": "申し訳ありません、質問を理解できませんでした。別の言い方で質問していただけますか？🙏"
+      "emptyResponseFallback": "申し訳ありません、質問を理解できませんでした。別の言い方で質問していただけますか？🙏",
+      "deleteAccount": "アカウントの削除に失敗しました。"
     }
   },
   "settings": {
@@ -126,7 +127,10 @@
       "logoutConfirm": "ログアウトしますか？",
       "guestMode": "ゲストモード",
       "guestDescription": "ログインして会話履歴を保存しましょう",
-      "login": "ログイン"
+      "login": "ログイン",
+      "deleteAccount": "退会",
+      "deleteAccountConfirm": "本当に退会しますか？すべてのデータが削除され、復元できません。",
+      "deleteAccountSuccess": "退会が完了しました。"
     },
     "theme": {
       "title": "テーマ設定",
@@ -190,7 +194,13 @@
     "deleteConfirm": "この会話を削除しますか？",
     "refresh": "更新",
     "deleteWarning": "削除された会話は復元できません。",
-    "deleteSuccess": "会話が削除されました。"
+    "deleteSuccess": "会話が削除されました。",
+    "guestGuideLine1": "ログインが必要です",
+    "guestGuideLine2": "会話履歴を保存できます！",
+    "deleteAll": "すべての会話を削除",
+    "deleteAllConfirm": "すべての会話を削除しますか？",
+    "deleteAllWarning": "すべての会話履歴が削除され、復元できません。",
+    "deleteAllSuccess": "すべての会話が削除されました。"
   },
   "auth": {
     "googleLogin": "Googleで続ける",

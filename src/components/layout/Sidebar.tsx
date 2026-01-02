@@ -34,6 +34,7 @@ export const Sidebar = () => {
     currentSessionId,
     prefetchSession,
     deleteSession,
+    deleteAllSessions,
     fetchSessions,
     isLoading: isSessionsLoading,
   } = useChatStore();
@@ -41,8 +42,11 @@ export const Sidebar = () => {
   const { addToast } = useToastStore();
   const [isHistoryOpen, setIsHistoryOpen] = useState(true);
   const [isPopoverOpen, setIsPopoverOpen] = useState(false);
+  const [isHistoryMenuOpen, setIsHistoryMenuOpen] = useState(false);
   const [deleteTargetId, setDeleteTargetId] = useState<string | null>(null);
+  const [isDeleteAllModalOpen, setIsDeleteAllModalOpen] = useState(false);
   const popoverRef = useRef<HTMLDivElement>(null);
+  const historyMenuRef = useRef<HTMLDivElement>(null);
   const prefetchTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   // 팝오버 외부 클릭 감지
@@ -54,12 +58,18 @@ export const Sidebar = () => {
       ) {
         setIsPopoverOpen(false);
       }
+      if (
+        historyMenuRef.current &&
+        !historyMenuRef.current.contains(event.target as Node)
+      ) {
+        setIsHistoryMenuOpen(false);
+      }
     };
-    if (isPopoverOpen) {
+    if (isPopoverOpen || isHistoryMenuOpen) {
       document.addEventListener("mousedown", handleClickOutside);
     }
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isPopoverOpen]);
+  }, [isPopoverOpen, isHistoryMenuOpen]);
 
   useEffect(() => {
     if (isAuthenticated) {
@@ -121,6 +131,17 @@ export const Sidebar = () => {
 
   const handleRefresh = () => {
     fetchSessions();
+  };
+
+  const handleDeleteAllClick = () => {
+    setIsHistoryMenuOpen(false);
+    setIsDeleteAllModalOpen(true);
+  };
+
+  const handleDeleteAllConfirm = async () => {
+    setIsDeleteAllModalOpen(false);
+    await deleteAllSessions();
+    addToast("success", t("sidebar.deleteAllSuccess"));
   };
 
   const toggleSidebar = () => {
@@ -230,16 +251,37 @@ export const Sidebar = () => {
                     }`}
                   />
                 </button>
-                <div className="flex items-center gap-1 flex-shrink-0">
+                <div className="flex items-center gap-1 flex-shrink-0 relative">
                   <button
                     onClick={handleRefresh}
                     className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors"
                   >
                     <RefreshCw size={14} />
                   </button>
-                  <button className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors">
+                  <button
+                    onClick={() => setIsHistoryMenuOpen(!isHistoryMenuOpen)}
+                    className="p-1.5 rounded-lg hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-500 hover:text-gray-700 dark:hover:text-gray-300 transition-colors relative"
+                  >
                     <MoreHorizontal size={14} />
                   </button>
+                  {/* History Menu Dropdown */}
+                  {isHistoryMenuOpen && (
+                    <div
+                      ref={historyMenuRef}
+                      className="absolute top-full right-0 mt-1 glass-modal rounded-xl py-2 min-w-[160px] z-50 animate-fade-in"
+                    >
+                      <button
+                        onClick={handleDeleteAllClick}
+                        disabled={sessions.length === 0}
+                        className="w-[calc(100%-8px)] mx-1 flex items-center gap-3 px-3 py-2.5 rounded-lg text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <Trash2 size={16} />
+                        <span className="text-sm">
+                          {t("sidebar.deleteAll")}
+                        </span>
+                      </button>
+                    </div>
+                  )}
                 </div>
               </div>
 
@@ -578,6 +620,18 @@ export const Sidebar = () => {
         type="warning"
         title={t("sidebar.deleteConfirm")}
         message={t("sidebar.deleteWarning")}
+        confirmText={t("common.delete")}
+        cancelText={t("common.cancel")}
+      />
+
+      {/* 일괄 삭제 확인 모달 */}
+      <AlertModal
+        isOpen={isDeleteAllModalOpen}
+        onClose={() => setIsDeleteAllModalOpen(false)}
+        onConfirm={handleDeleteAllConfirm}
+        type="warning"
+        title={t("sidebar.deleteAllConfirm")}
+        message={t("sidebar.deleteAllWarning")}
         confirmText={t("common.delete")}
         cancelText={t("common.cancel")}
       />

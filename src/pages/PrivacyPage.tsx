@@ -477,8 +477,8 @@ export const PrivacyPage = () => {
                     개인정보보호책임자에게 요청
                   </li>
                   <li>
-                    • <strong>기타 요청:</strong>{" "}
-                    이메일(privacy@gangnaengbot.com)로 요청
+                    • <strong>기타 요청:</strong> 이메일(kpj45123@gmail.com)로
+                    요청
                   </li>
                 </ul>
               </div>

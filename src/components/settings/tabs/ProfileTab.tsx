@@ -254,7 +254,7 @@ export const ProfileTab = ({ isMobile = false }: ProfileTabProps) => {
               {t("settings.profile.currentSemester")}
             </label>
             <div className="flex items-center gap-3 flex-1">
-              <div className="relative">
+              <div className="relative z-10">
                 <select
                   name="current_grade"
                   value={form.current_grade}
@@ -275,7 +275,7 @@ export const ProfileTab = ({ isMobile = false }: ProfileTabProps) => {
               <span className="text-sm text-gray-500 dark:text-gray-400">
                 {t("settings.profile.grade")}
               </span>
-              <div className="relative">
+              <div className="relative z-10">
                 <select
                   name="current_semester"
                   value={form.current_semester}
@@ -327,7 +327,7 @@ export const ProfileTab = ({ isMobile = false }: ProfileTabProps) => {
 
       {/* 모바일에서 저장 버튼 하단 고정 */}
       {isMobile && (
-        <div className="sticky bottom-0 left-0 right-0 pt-4 pb-2 bg-gradient-to-t from-white via-white to-transparent dark:from-slate-900 dark:via-slate-900">
+        <div className="sticky bottom-0 left-0 right-0 z-0 pt-4 pb-2 bg-gradient-to-t from-white via-white to-transparent dark:from-slate-900 dark:via-slate-900">
           <button
             type="submit"
             disabled={isLoading}

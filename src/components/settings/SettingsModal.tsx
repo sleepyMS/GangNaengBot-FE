@@ -222,7 +222,7 @@ export const SettingsModal = () => {
           </div>
 
           {/* Content - 중앙 정렬 */}
-          <div className="px-4 pb-8 flex flex-col items-center w-full">
+          <div className="px-4 pt-4 pb-8 flex flex-col items-center w-full">
             <div className="w-full max-w-md">{renderTabContent()}</div>
           </div>
         </div>

@@ -27,10 +27,11 @@ export const PrivacyPage = () => {
           {/* 개인정보처리방침 개요 */}
           <section className="bg-blue-50/50 dark:bg-blue-900/20 rounded-xl p-4 border border-blue-100 dark:border-blue-800">
             <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm">
-              <strong>강냉봇</strong>(이하 "서비스")은 「개인정보 보호법」
-              제30조에 따라 정보주체(이용자)의 개인정보를 보호하고 이와 관련한
-              고충을 신속하고 원활하게 처리할 수 있도록 다음과 같이 개인정보
-              처리방침을 수립·공개합니다. 본 방침은 서비스 이용 시 적용됩니다.
+              <strong>{t("privacy.content.serviceName")}</strong>
+              {t("privacy.content.overview").replace(
+                t("privacy.content.serviceName"),
+                ""
+              )}
             </p>
           </section>
 
@@ -40,41 +41,48 @@ export const PrivacyPage = () => {
               {t("privacy.articles.purpose")}
             </h2>
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-3">
-              <p>
-                서비스는 다음의 목적을 위하여 개인정보를 처리합니다. 처리하고
-                있는 개인정보는 다음의 목적 이외의 용도로는 이용되지 않으며,
-                이용 목적이 변경되는 경우에는 「개인정보 보호법」 제18조에 따라
-                별도의 동의를 받는 등 필요한 조치를 이행할 예정입니다.
-              </p>
+              <p>{t("privacy.content.purpose.intro")}</p>
               <div className="space-y-4 mt-4">
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <h3 className="font-semibold text-gray-700 mb-2">
-                    1. 서비스 제공
+                <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-4">
+                  <h3 className="font-semibold text-gray-700 dark:text-gray-200 mb-2">
+                    {t("privacy.content.purpose.service.title")}
                   </h3>
                   <ul className="space-y-1 list-disc list-inside ml-2 text-sm">
-                    <li>AI 기반 강남대학교 학사정보 질의응답 서비스 제공</li>
-                    <li>대화 이력 저장 및 관리</li>
-                    <li>개인화된 학사 정보 및 일정 안내</li>
+                    {(
+                      t("privacy.content.purpose.service.items", {
+                        returnObjects: true,
+                      }) as string[]
+                    ).map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
                   </ul>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <h3 className="font-semibold text-gray-700 mb-2">
-                    2. 회원 관리
+                <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-4">
+                  <h3 className="font-semibold text-gray-700 dark:text-gray-200 mb-2">
+                    {t("privacy.content.purpose.member.title")}
                   </h3>
                   <ul className="space-y-1 list-disc list-inside ml-2 text-sm">
-                    <li>회원 가입 의사 확인 및 본인 식별·인증</li>
-                    <li>회원 자격 유지·관리</li>
-                    <li>서비스 부정 이용 방지</li>
+                    {(
+                      t("privacy.content.purpose.member.items", {
+                        returnObjects: true,
+                      }) as string[]
+                    ).map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
                   </ul>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <h3 className="font-semibold text-gray-700 mb-2">
-                    3. 서비스 개선
+                <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-4">
+                  <h3 className="font-semibold text-gray-700 dark:text-gray-200 mb-2">
+                    {t("privacy.content.purpose.improvement.title")}
                   </h3>
                   <ul className="space-y-1 list-disc list-inside ml-2 text-sm">
-                    <li>서비스 이용 현황 분석 및 통계</li>
-                    <li>AI 모델 품질 개선 (익명화된 데이터 활용)</li>
-                    <li>신규 서비스 개발 및 기능 개선</li>
+                    {(
+                      t("privacy.content.purpose.improvement.items", {
+                        returnObjects: true,
+                      }) as string[]
+                    ).map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -86,59 +94,66 @@ export const PrivacyPage = () => {
             <h2 className="text-xl font-bold text-gray-800 dark:text-gray-100 mb-4">
               {t("privacy.articles.items")}
             </h2>
-            <div className="text-gray-600 leading-relaxed space-y-4">
+            <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-4">
               <div className="overflow-x-auto">
                 <table className="w-full text-sm border-collapse">
                   <thead>
-                    <tr className="bg-gray-100">
-                      <th className="border border-gray-200 px-3 py-2 text-left font-semibold">
-                        구분
+                    <tr className="bg-gray-100 dark:bg-slate-700">
+                      <th className="border border-gray-200 dark:border-gray-600 px-3 py-2 text-left font-semibold">
+                        {t("privacy.content.items.table.category")}
                       </th>
-                      <th className="border border-gray-200 px-3 py-2 text-left font-semibold">
-                        수집 항목
+                      <th className="border border-gray-200 dark:border-gray-600 px-3 py-2 text-left font-semibold">
+                        {t("privacy.content.items.table.collected")}
                       </th>
-                      <th className="border border-gray-200 px-3 py-2 text-left font-semibold">
-                        필수/선택
+                      <th className="border border-gray-200 dark:border-gray-600 px-3 py-2 text-left font-semibold">
+                        {t("privacy.content.items.table.required")}
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="border border-gray-200 px-3 py-2 font-medium">
-                        회원가입 시
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2 font-medium">
+                        {t("privacy.content.items.rows.signup.category")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        이메일 주소, Google 계정 프로필 정보(이름, 프로필
-                        이미지)
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.items.rows.signup.items")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">필수</td>
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.items.rows.signup.type")}
+                      </td>
                     </tr>
-                    <tr className="bg-gray-50">
-                      <td className="border border-gray-200 px-3 py-2 font-medium">
-                        프로필 설정 시
+                    <tr className="bg-gray-50 dark:bg-slate-700/50">
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2 font-medium">
+                        {t("privacy.content.items.rows.profile.category")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        닉네임, 학번, 소속(단과대학, 학부, 전공), 학년, 학기
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.items.rows.profile.items")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">선택</td>
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.items.rows.profile.type")}
+                      </td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-200 px-3 py-2 font-medium">
-                        서비스 이용 시
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2 font-medium">
+                        {t("privacy.content.items.rows.usage.category")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        대화 내용(질문 및 AI 응답), 대화 세션 정보
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.items.rows.usage.items")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">필수</td>
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.items.rows.usage.type")}
+                      </td>
                     </tr>
-                    <tr className="bg-gray-50">
-                      <td className="border border-gray-200 px-3 py-2 font-medium">
-                        자동 수집
+                    <tr className="bg-gray-50 dark:bg-slate-700/50">
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2 font-medium">
+                        {t("privacy.content.items.rows.auto.category")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        접속 일시, 브라우저 정보, 디바이스 정보 (서버 로그)
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.items.rows.auto.items")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">필수</td>
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.items.rows.auto.type")}
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -146,11 +161,9 @@ export const PrivacyPage = () => {
               <div className="bg-yellow-50/70 dark:bg-yellow-900/20 rounded-xl p-4 border border-yellow-200 dark:border-yellow-800 mt-4">
                 <p className="text-yellow-800 dark:text-yellow-200 text-sm">
                   <strong className="text-yellow-800 dark:text-yellow-200">
-                    ⚠️ 주의:
+                    {t("privacy.content.items.warningLabel")}
                   </strong>{" "}
-                  서비스 이용 시 민감한 개인정보(주민등록번호, 금융정보,
-                  건강정보, 비밀번호 등)를 AI 대화에 입력하지 마시기 바랍니다.
-                  입력된 민감정보에 대한 책임은 이용자에게 있습니다.
+                  {t("privacy.content.items.warning")}
                 </p>
               </div>
             </div>
@@ -162,21 +175,23 @@ export const PrivacyPage = () => {
               {t("privacy.articles.method")}
             </h2>
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-3">
-              <p>서비스는 다음과 같은 방법으로 개인정보를 수집합니다:</p>
+              <p>{t("privacy.content.method.intro")}</p>
               <ul className="space-y-2 list-decimal list-inside ml-2">
                 <li>
-                  <strong>회원가입:</strong> Google OAuth 2.0을 통한 소셜 로그인
+                  <strong>{t("privacy.content.method.signup")}</strong>{" "}
+                  {t("privacy.content.method.signupDesc")}
                 </li>
                 <li>
-                  <strong>프로필 설정:</strong> 이용자의 자발적 입력
+                  <strong>{t("privacy.content.method.profile")}</strong>{" "}
+                  {t("privacy.content.method.profileDesc")}
                 </li>
                 <li>
-                  <strong>서비스 이용:</strong> AI 챗봇과의 대화 과정에서
-                  이용자가 입력한 내용
+                  <strong>{t("privacy.content.method.usage")}</strong>{" "}
+                  {t("privacy.content.method.usageDesc")}
                 </li>
                 <li>
-                  <strong>자동 수집:</strong> 서비스 이용 과정에서 자동으로
-                  생성되는 접속 로그
+                  <strong>{t("privacy.content.method.auto")}</strong>{" "}
+                  {t("privacy.content.method.autoDesc")}
                 </li>
               </ul>
             </div>
@@ -188,69 +203,65 @@ export const PrivacyPage = () => {
               {t("privacy.articles.period")}
             </h2>
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-3">
-              <p>
-                서비스는 개인정보 수집 및 이용 목적이 달성된 후에는 해당 정보를
-                지체 없이 파기합니다. 다만, 다음의 정보에 대해서는 아래의 이유로
-                명시한 기간 동안 보존합니다:
-              </p>
+              <p>{t("privacy.content.period.intro")}</p>
               <div className="overflow-x-auto mt-4">
                 <table className="w-full text-sm border-collapse">
                   <thead>
-                    <tr className="bg-gray-100">
-                      <th className="border border-gray-200 px-3 py-2 text-left font-semibold">
-                        보유 항목
+                    <tr className="bg-gray-100 dark:bg-slate-700">
+                      <th className="border border-gray-200 dark:border-gray-600 px-3 py-2 text-left font-semibold">
+                        {t("privacy.content.period.table.item")}
                       </th>
-                      <th className="border border-gray-200 px-3 py-2 text-left font-semibold">
-                        보유 기간
+                      <th className="border border-gray-200 dark:border-gray-600 px-3 py-2 text-left font-semibold">
+                        {t("privacy.content.period.table.period")}
                       </th>
-                      <th className="border border-gray-200 px-3 py-2 text-left font-semibold">
-                        보유 근거
+                      <th className="border border-gray-200 dark:border-gray-600 px-3 py-2 text-left font-semibold">
+                        {t("privacy.content.period.table.reason")}
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="border border-gray-200 px-3 py-2">
-                        회원 계정 정보
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.period.rows.account.item")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        회원 탈퇴 시까지
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.period.rows.account.period")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        서비스 이용계약
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.period.rows.account.reason")}
                       </td>
                     </tr>
-                    <tr className="bg-gray-50">
-                      <td className="border border-gray-200 px-3 py-2">
-                        대화 이력
+                    <tr className="bg-gray-50 dark:bg-slate-700/50">
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.period.rows.chat.item")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        회원 탈퇴 시 또는 삭제 요청 시까지
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.period.rows.chat.period")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        서비스 제공
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.period.rows.chat.reason")}
                       </td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-200 px-3 py-2">
-                        서비스 이용 기록, 접속 로그
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.period.rows.log.item")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        3개월
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.period.rows.log.period")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        통신비밀보호법 제15조의2
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.period.rows.log.reason")}
                       </td>
                     </tr>
-                    <tr className="bg-gray-50">
-                      <td className="border border-gray-200 px-3 py-2">
-                        게스트 대화 이력
+                    <tr className="bg-gray-50 dark:bg-slate-700/50">
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.period.rows.guest.item")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        세션 종료 시 또는 7일 후
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.period.rows.guest.period")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        서비스 제공
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.period.rows.guest.reason")}
                       </td>
                     </tr>
                   </tbody>
@@ -265,32 +276,32 @@ export const PrivacyPage = () => {
               {t("privacy.articles.destruction")}
             </h2>
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-3">
-              <p>
-                서비스는 개인정보 보유 기간의 경과, 처리 목적 달성 등 개인정보가
-                불필요하게 되었을 때에는 지체 없이 해당 개인정보를 파기합니다.
-              </p>
+              <p>{t("privacy.content.destruction.intro")}</p>
               <div className="space-y-4 mt-4">
                 <div>
-                  <h3 className="font-semibold text-gray-700 mb-2">
-                    파기 절차
+                  <h3 className="font-semibold text-gray-700 dark:text-gray-200 mb-2">
+                    {t("privacy.content.destruction.procedure.title")}
                   </h3>
                   <p className="text-sm ml-2">
-                    이용자가 입력한 정보는 목적 달성 후 별도의 DB에 옮겨져 내부
-                    방침 및 기타 관련 법령에 따라 일정 기간 저장된 후 혹은 즉시
-                    파기됩니다.
+                    {t("privacy.content.destruction.procedure.content")}
                   </p>
                 </div>
                 <div>
-                  <h3 className="font-semibold text-gray-700 mb-2">
-                    파기 방법
+                  <h3 className="font-semibold text-gray-700 dark:text-gray-200 mb-2">
+                    {t("privacy.content.destruction.method.title")}
                   </h3>
                   <ul className="space-y-1 list-disc list-inside ml-2 text-sm">
                     <li>
-                      <strong>전자적 파일:</strong> 복구 및 재생이 불가능한
-                      기술적 방법을 사용하여 삭제
+                      <strong>
+                        {t("privacy.content.destruction.method.electronic")}
+                      </strong>{" "}
+                      {t("privacy.content.destruction.method.electronicDesc")}
                     </li>
                     <li>
-                      <strong>종이 문서:</strong> 분쇄기로 분쇄하거나 소각
+                      <strong>
+                        {t("privacy.content.destruction.method.paper")}
+                      </strong>{" "}
+                      {t("privacy.content.destruction.method.paperDesc")}
                     </li>
                   </ul>
                 </div>
@@ -304,28 +315,16 @@ export const PrivacyPage = () => {
               {t("privacy.articles.thirdParty")}
             </h2>
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-3">
-              <p>
-                서비스는 원칙적으로 이용자의 개인정보를 제1조에서 명시한 목적
-                범위 내에서 처리하며, 정보주체의 사전 동의 없이는 본래의 목적
-                범위를 초과하여 처리하거나 제3자에게 제공하지 않습니다.
-              </p>
-              <p>다만, 다음의 경우에는 예외로 합니다:</p>
+              <p>{t("privacy.content.thirdParty.intro")}</p>
+              <p>{t("privacy.content.thirdParty.exception")}</p>
               <ul className="space-y-2 list-decimal list-inside ml-2">
-                <li>정보주체가 사전에 제3자 제공에 동의한 경우</li>
-                <li>
-                  법령에 특별한 규정이 있거나 법령상 의무를 준수하기 위하여
-                  불가피한 경우
-                </li>
-                <li>
-                  정보주체 또는 그 법정대리인이 의사표시를 할 수 없는 상태에
-                  있거나 주소불명 등으로 사전 동의를 받을 수 없는 경우로서
-                  명백히 정보주체 또는 제3자의 급박한 생명, 신체, 재산의 이익을
-                  위하여 필요하다고 인정되는 경우
-                </li>
-                <li>
-                  통계작성 및 학술연구 등의 목적을 위하여 필요한 경우로서 특정
-                  개인을 알아볼 수 없는 형태로 개인정보를 제공하는 경우
-                </li>
+                {(
+                  t("privacy.content.thirdParty.exceptions", {
+                    returnObjects: true,
+                  }) as string[]
+                ).map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
               </ul>
             </div>
           </section>
@@ -336,56 +335,49 @@ export const PrivacyPage = () => {
               {t("privacy.articles.consignment")}
             </h2>
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-3">
-              <p>
-                서비스는 원활한 서비스 제공을 위해 다음과 같이 개인정보 처리
-                업무를 위탁하고 있습니다:
-              </p>
+              <p>{t("privacy.content.consignment.intro")}</p>
               <div className="overflow-x-auto mt-4">
                 <table className="w-full text-sm border-collapse">
                   <thead>
-                    <tr className="bg-gray-100">
-                      <th className="border border-gray-200 px-3 py-2 text-left font-semibold">
-                        위탁받는 자
+                    <tr className="bg-gray-100 dark:bg-slate-700">
+                      <th className="border border-gray-200 dark:border-gray-600 px-3 py-2 text-left font-semibold">
+                        {t("privacy.content.consignment.table.recipient")}
                       </th>
-                      <th className="border border-gray-200 px-3 py-2 text-left font-semibold">
-                        위탁 업무 내용
+                      <th className="border border-gray-200 dark:border-gray-600 px-3 py-2 text-left font-semibold">
+                        {t("privacy.content.consignment.table.task")}
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="border border-gray-200 px-3 py-2">
-                        Google LLC
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.consignment.rows.google.recipient")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        소셜 로그인 인증 서비스 제공
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.consignment.rows.google.task")}
                       </td>
                     </tr>
-                    <tr className="bg-gray-50">
-                      <td className="border border-gray-200 px-3 py-2">
-                        Google Cloud Platform
+                    <tr className="bg-gray-50 dark:bg-slate-700/50">
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.consignment.rows.gcp.recipient")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        서버 호스팅 및 데이터 저장 (Google Cloud Run)
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.consignment.rows.gcp.task")}
                       </td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-200 px-3 py-2">
-                        AI 서비스 제공업체
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.consignment.rows.ai.recipient")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        AI 모델 API를 통한 응답 생성
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.consignment.rows.ai.task")}
                       </td>
                     </tr>
                   </tbody>
                 </table>
               </div>
               <p className="text-sm mt-3">
-                위탁계약 체결 시 「개인정보 보호법」에 따라 위탁업무 수행 목적
-                외 개인정보 처리 금지, 기술적·관리적 보호조치, 재위탁 제한,
-                수탁자에 대한 관리·감독, 손해배상 등 책임에 관한 사항을 계약서
-                등 문서에 명시하고, 수탁자가 개인정보를 안전하게 처리하는지를
-                감독하고 있습니다.
+                {t("privacy.content.consignment.notice")}
               </p>
             </div>
           </section>
@@ -397,31 +389,32 @@ export const PrivacyPage = () => {
             </h2>
             <div className="bg-purple-50/50 dark:bg-purple-900/20 rounded-xl p-4 border border-purple-100 dark:border-purple-800 mb-4">
               <p className="text-purple-800 dark:text-purple-200 text-sm font-medium">
-                🤖 AI 서비스 특화 조항
+                {t("privacy.content.ai.badge")}
               </p>
             </div>
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-3">
               <ul className="space-y-3 list-decimal list-inside ml-2">
                 <li>
-                  <strong>학습 데이터 활용:</strong> 서비스 품질 향상을 위해
-                  익명화된 대화 데이터를 AI 모델 개선에 활용할 수 있습니다. 이
-                  경우 개인을 식별할 수 있는 정보는 완전히 제거됩니다.
+                  <strong>
+                    {t("privacy.content.ai.items.training.title")}
+                  </strong>{" "}
+                  {t("privacy.content.ai.items.training.content")}
                 </li>
                 <li>
-                  <strong>비식별화 조치:</strong> AI 학습에 활용되는 데이터는
-                  가명처리 또는 익명화 처리를 거쳐 특정 개인을 알아볼 수 없도록
-                  조치합니다.
+                  <strong>
+                    {t("privacy.content.ai.items.anonymization.title")}
+                  </strong>{" "}
+                  {t("privacy.content.ai.items.anonymization.content")}
                 </li>
                 <li>
-                  <strong>AI 응답 생성:</strong> 서비스는 외부 AI 모델 API를
-                  활용하여 응답을 생성합니다. 이용자의 질문은 응답 생성을 위해
-                  해당 AI 서비스 제공업체에 전송될 수 있으며, 이 과정에서
-                  개인정보 보호를 위한 기술적 조치가 적용됩니다.
+                  <strong>
+                    {t("privacy.content.ai.items.response.title")}
+                  </strong>{" "}
+                  {t("privacy.content.ai.items.response.content")}
                 </li>
                 <li>
-                  <strong>학습 데이터 거부권:</strong> 이용자는 자신의 대화
-                  데이터가 AI 학습에 활용되는 것을 거부할 수 있습니다. 거부
-                  의사는 개인정보보호책임자에게 연락하여 표시할 수 있습니다.
+                  <strong>{t("privacy.content.ai.items.optout.title")}</strong>{" "}
+                  {t("privacy.content.ai.items.optout.content")}
                 </li>
               </ul>
             </div>
@@ -433,61 +426,76 @@ export const PrivacyPage = () => {
               {t("privacy.articles.rights")}
             </h2>
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-3">
-              <p>
-                정보주체(이용자)는 서비스에 대해 언제든지 다음 각 호의 개인정보
-                보호 관련 권리를 행사할 수 있습니다:
-              </p>
+              <p>{t("privacy.content.rights.intro")}</p>
               <ul className="space-y-2 list-decimal list-inside ml-2">
                 <li>
-                  <strong>개인정보 열람 요구:</strong> 본인의 개인정보 처리 현황
-                  열람
+                  <strong>
+                    {t("privacy.content.rights.items.access.title")}
+                  </strong>{" "}
+                  {t("privacy.content.rights.items.access.content")}
                 </li>
                 <li>
-                  <strong>개인정보 정정·삭제 요구:</strong> 오류 등이 있을 경우
-                  정정 또는 삭제 요청
+                  <strong>
+                    {t("privacy.content.rights.items.correction.title")}
+                  </strong>{" "}
+                  {t("privacy.content.rights.items.correction.content")}
                 </li>
                 <li>
-                  <strong>개인정보 처리정지 요구:</strong> 개인정보 처리의 정지
-                  요청
+                  <strong>
+                    {t("privacy.content.rights.items.suspension.title")}
+                  </strong>{" "}
+                  {t("privacy.content.rights.items.suspension.content")}
                 </li>
                 <li>
-                  <strong>동의 철회:</strong> 개인정보 수집·이용에 대한 동의
-                  철회
+                  <strong>
+                    {t("privacy.content.rights.items.withdrawal.title")}
+                  </strong>{" "}
+                  {t("privacy.content.rights.items.withdrawal.content")}
                 </li>
                 <li>
-                  <strong>회원 탈퇴:</strong> 서비스 이용 종료 및 모든 개인정보
-                  삭제
+                  <strong>
+                    {t("privacy.content.rights.items.deletion.title")}
+                  </strong>{" "}
+                  {t("privacy.content.rights.items.deletion.content")}
                 </li>
               </ul>
               <div className="bg-gray-50 dark:bg-slate-700 rounded-xl p-4 mt-4">
-                <h3 className="font-semibold text-gray-700 mb-2">
-                  권리 행사 방법
+                <h3 className="font-semibold text-gray-700 dark:text-gray-200 mb-2">
+                  {t("privacy.content.rights.howTo.title")}
                 </h3>
                 <ul className="space-y-1 text-sm">
                   <li>
-                    • <strong>프로필 설정:</strong> 서비스 내 프로필 설정
-                    페이지에서 직접 수정·삭제
+                    •{" "}
+                    <strong>
+                      {t("privacy.content.rights.howTo.profile.title")}
+                    </strong>{" "}
+                    {t("privacy.content.rights.howTo.profile.content")}
                   </li>
                   <li>
-                    • <strong>대화 이력:</strong> 서비스 내에서 개별 세션 삭제
-                    가능
+                    •{" "}
+                    <strong>
+                      {t("privacy.content.rights.howTo.chat.title")}
+                    </strong>{" "}
+                    {t("privacy.content.rights.howTo.chat.content")}
                   </li>
                   <li>
-                    • <strong>회원 탈퇴:</strong> 프로필 설정 또는
-                    개인정보보호책임자에게 요청
+                    •{" "}
+                    <strong>
+                      {t("privacy.content.rights.howTo.withdrawal.title")}
+                    </strong>{" "}
+                    {t("privacy.content.rights.howTo.withdrawal.content")}
                   </li>
                   <li>
-                    • <strong>기타 요청:</strong> 이메일(kpj45123@gmail.com)로
-                    요청
+                    •{" "}
+                    <strong>
+                      {t("privacy.content.rights.howTo.other.title")}
+                    </strong>{" "}
+                    {t("privacy.content.rights.howTo.other.content")}
                   </li>
                 </ul>
               </div>
               <p className="text-sm mt-3">
-                권리 행사는 서면, 전화, 전자우편 등을 통하여 하실 수 있으며,
-                서비스는 이에 대해 지체 없이 조치하겠습니다. 정보주체가
-                개인정보의 오류 등에 대한 정정 또는 삭제를 요구한 경우에는
-                서비스는 정정 또는 삭제를 완료할 때까지 당해 개인정보를
-                이용하거나 제공하지 않습니다.
+                {t("privacy.content.rights.notice")}
               </p>
             </div>
           </section>
@@ -498,26 +506,23 @@ export const PrivacyPage = () => {
               {t("privacy.articles.automated")}
             </h2>
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-3">
-              <p>
-                서비스는 AI를 활용하여 이용자의 질문에 자동으로 응답을
-                생성합니다. 이와 관련하여 정보주체는 다음의 권리를 가집니다:
-              </p>
+              <p>{t("privacy.content.automated.intro")}</p>
               <ul className="space-y-2 list-decimal list-inside ml-2">
                 <li>
-                  <strong>자동화된 결정에 대한 설명 요구:</strong> AI가 어떤
-                  방식으로 응답을 생성하는지에 대한 일반적인 설명을 요청할 수
-                  있습니다.
+                  <strong>
+                    {t("privacy.content.automated.items.explanation.title")}
+                  </strong>{" "}
+                  {t("privacy.content.automated.items.explanation.content")}
                 </li>
                 <li>
-                  <strong>이의제기 권리:</strong> AI의 응답이 부정확하거나
-                  부적절하다고 판단되는 경우, 이에 대해 이의를 제기할 수
-                  있습니다.
+                  <strong>
+                    {t("privacy.content.automated.items.objection.title")}
+                  </strong>{" "}
+                  {t("privacy.content.automated.items.objection.content")}
                 </li>
               </ul>
               <p className="text-sm mt-3">
-                다만, 본 서비스의 AI 응답은 학사정보 안내 목적으로만 제공되며,
-                이용자의 권리나 의무에 중대한 영향을 미치는 법적 결정을 내리지
-                않습니다.
+                {t("privacy.content.automated.notice")}
               </p>
             </div>
           </section>
@@ -528,15 +533,8 @@ export const PrivacyPage = () => {
               {t("privacy.articles.children")}
             </h2>
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-3">
-              <p>
-                서비스는 만 14세 미만의 아동에 대한 개인정보를 수집하지
-                않습니다. 서비스는 대학생 및 대학 관계자를 주요 이용자로 하며,
-                만 14세 미만 아동의 이용을 대상으로 하지 않습니다.
-              </p>
-              <p>
-                만약 만 14세 미만 아동의 개인정보가 수집된 사실을 알게 된 경우,
-                해당 정보를 지체 없이 파기하겠습니다.
-              </p>
+              <p>{t("privacy.content.children.paragraph1")}</p>
+              <p>{t("privacy.content.children.paragraph2")}</p>
             </div>
           </section>
 
@@ -546,64 +544,57 @@ export const PrivacyPage = () => {
               {t("privacy.articles.cookies")}
             </h2>
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-3">
-              <p>
-                서비스는 이용자에게 개별적인 맞춤 서비스를 제공하기 위해
-                브라우저의 '로컬 저장소(Local Storage)'를 사용합니다. 로컬
-                저장소는 쿠키와 달리 서버로 자동 전송되지 않으며, 이용자의
-                브라우저에만 저장됩니다.
-              </p>
+              <p>{t("privacy.content.cookies.intro")}</p>
               <div className="bg-blue-50 dark:bg-blue-900/30 rounded-xl p-4 mt-3">
                 <h3 className="font-semibold text-blue-800 dark:text-blue-200 mb-2">
-                  저장되는 항목
+                  {t("privacy.content.cookies.itemsTitle")}
                 </h3>
                 <ul className="space-y-2 text-blue-700 dark:text-blue-300 text-sm">
                   <li>
-                    <strong>• 인증 토큰 (access_token)</strong>
+                    <strong>
+                      • {t("privacy.content.cookies.items.token.title")}
+                    </strong>
                     <p className="ml-4 text-blue-600 dark:text-blue-400 text-xs mt-1">
-                      로그인 상태 유지 및 API 인증에 사용
+                      {t("privacy.content.cookies.items.token.desc")}
                     </p>
                   </li>
                   <li>
-                    <strong>• 사용자 정보 캐시 (auth-storage)</strong>
+                    <strong>
+                      • {t("privacy.content.cookies.items.auth.title")}
+                    </strong>
                     <p className="ml-4 text-blue-600 dark:text-blue-400 text-xs mt-1">
-                      사용자 프로필 및 인증 상태 캐싱
+                      {t("privacy.content.cookies.items.auth.desc")}
                     </p>
                   </li>
                   <li>
-                    <strong>• 설정 정보 (gangnaeng-settings)</strong>
+                    <strong>
+                      • {t("privacy.content.cookies.items.settings.title")}
+                    </strong>
                     <p className="ml-4 text-blue-600 dark:text-blue-400 text-xs mt-1">
-                      테마(다크/라이트 모드), 선호 언어 설정
+                      {t("privacy.content.cookies.items.settings.desc")}
                     </p>
                   </li>
                   <li>
-                    <strong>• 언어 감지 캐시 (i18next)</strong>
+                    <strong>
+                      • {t("privacy.content.cookies.items.i18n.title")}
+                    </strong>
                     <p className="ml-4 text-blue-600 dark:text-blue-400 text-xs mt-1">
-                      다국어 지원을 위한 언어 감지 결과 저장
+                      {t("privacy.content.cookies.items.i18n.desc")}
                     </p>
                   </li>
                 </ul>
               </div>
               <div className="mt-4">
                 <h3 className="font-semibold text-gray-700 dark:text-gray-300 mb-2">
-                  로컬 저장소 삭제 방법
+                  {t("privacy.content.cookies.deleteTitle")}
                 </h3>
                 <p className="text-sm">
-                  이용자는 브라우저 설정 또는 개발자 도구를 통해 로컬 저장소
-                  데이터를 삭제할 수 있습니다. 삭제 시 로그인 상태가 해제되며,
-                  설정이 초기화됩니다.
+                  {t("privacy.content.cookies.deleteIntro")}
                 </p>
                 <ul className="space-y-1 text-sm mt-2 ml-2">
-                  <li>
-                    • Chrome: 개발자 도구(F12) → Application → Local Storage →
-                    해당 사이트 선택 후 삭제
-                  </li>
-                  <li>
-                    • Safari: 개발자 도구 → Storage → Local Storage에서 삭제
-                  </li>
-                  <li>
-                    • Firefox: 개발자 도구(F12) → Storage → Local Storage에서
-                    삭제
-                  </li>
+                  <li>• {t("privacy.content.cookies.deleteSteps.chrome")}</li>
+                  <li>• {t("privacy.content.cookies.deleteSteps.safari")}</li>
+                  <li>• {t("privacy.content.cookies.deleteSteps.firefox")}</li>
                 </ul>
               </div>
             </div>
@@ -615,33 +606,34 @@ export const PrivacyPage = () => {
               {t("privacy.articles.safety")}
             </h2>
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-3">
-              <p>
-                서비스는 「개인정보 보호법」 제29조에 따라 다음과 같이 안전성
-                확보에 필요한 기술적·관리적·물리적 조치를 하고 있습니다:
-              </p>
+              <p>{t("privacy.content.safety.intro")}</p>
               <div className="grid md:grid-cols-2 gap-4 mt-4">
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <h3 className="font-semibold text-gray-700 mb-2">
-                    🔒 기술적 조치
+                <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-4">
+                  <h3 className="font-semibold text-gray-700 dark:text-gray-200 mb-2">
+                    {t("privacy.content.safety.technical.title")}
                   </h3>
                   <ul className="space-y-1 list-disc list-inside text-sm">
-                    <li>SSL/TLS를 통한 데이터 암호화 전송</li>
-                    <li>민감 정보 암호화 저장 (해시, AES)</li>
-                    <li>JWT 토큰 기반 인증 시스템</li>
-                    <li>보안 취약점 정기 점검</li>
-                    <li>침입 탐지 및 방지 시스템 운영</li>
+                    {(
+                      t("privacy.content.safety.technical.items", {
+                        returnObjects: true,
+                      }) as string[]
+                    ).map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
                   </ul>
                 </div>
-                <div className="bg-gray-50 rounded-lg p-4">
-                  <h3 className="font-semibold text-gray-700 mb-2">
-                    📋 관리적 조치
+                <div className="bg-gray-50 dark:bg-slate-700 rounded-lg p-4">
+                  <h3 className="font-semibold text-gray-700 dark:text-gray-200 mb-2">
+                    {t("privacy.content.safety.administrative.title")}
                   </h3>
                   <ul className="space-y-1 list-disc list-inside text-sm">
-                    <li>개인정보 취급자 최소화</li>
-                    <li>개인정보 처리 권한 분리</li>
-                    <li>내부관리계획 수립·시행</li>
-                    <li>접근 권한 관리 및 로그 기록</li>
-                    <li>정기적인 자체 감사 실시</li>
+                    {(
+                      t("privacy.content.safety.administrative.items", {
+                        returnObjects: true,
+                      }) as string[]
+                    ).map((item, i) => (
+                      <li key={i}>{item}</li>
+                    ))}
                   </ul>
                 </div>
               </div>
@@ -654,36 +646,32 @@ export const PrivacyPage = () => {
               {t("privacy.articles.officer")}
             </h2>
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-3">
-              <p>
-                서비스는 개인정보 처리에 관한 업무를 총괄해서 책임지고, 개인정보
-                처리와 관련한 정보주체의 불만처리 및 피해구제 등을 위하여 아래와
-                같이 개인정보 보호책임자를 지정하고 있습니다.
-              </p>
+              <p>{t("privacy.content.officer.intro")}</p>
               <div className="bg-gray-50 dark:bg-slate-700 rounded-xl p-4 mt-3">
-                <h3 className="font-semibold text-gray-700 mb-3">
-                  개인정보 보호책임자
+                <h3 className="font-semibold text-gray-700 dark:text-gray-200 mb-3">
+                  {t("privacy.content.officer.title")}
                 </h3>
                 <div className="space-y-2 text-sm">
                   <p>
-                    <strong>서비스명:</strong> 강냉봇 (GangNaengBot)
+                    <strong>{t("privacy.content.officer.serviceName")}</strong>{" "}
+                    {t("privacy.content.officer.serviceValue")}
                   </p>
                   <p>
-                    <strong>책임자:</strong> 홍기현
+                    <strong>{t("privacy.content.officer.person")}</strong>{" "}
+                    {t("privacy.content.officer.personValue")}
                   </p>
                   <p>
-                    <strong>이메일:</strong> kpj45123@gmail.com
+                    <strong>{t("privacy.content.officer.email")}</strong>{" "}
+                    {t("privacy.content.officer.emailValue")}
                   </p>
                   <p>
-                    <strong>문의 가능 시간:</strong> 평일 09:00 ~ 18:00 (공휴일
-                    제외)
+                    <strong>{t("privacy.content.officer.hours")}</strong>{" "}
+                    {t("privacy.content.officer.hoursValue")}
                   </p>
                 </div>
               </div>
               <p className="text-sm mt-3">
-                정보주체는 서비스를 이용하시면서 발생한 모든 개인정보 보호 관련
-                문의, 불만처리, 피해구제 등에 관한 사항을 개인정보
-                보호책임자에게 문의하실 수 있습니다. 서비스는 정보주체의 문의에
-                대해 지체 없이 답변 및 처리해 드릴 것입니다.
+                {t("privacy.content.officer.notice")}
               </p>
             </div>
           </section>
@@ -694,63 +682,65 @@ export const PrivacyPage = () => {
               {t("privacy.articles.remedy")}
             </h2>
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-3">
-              <p>
-                정보주체는 개인정보침해로 인한 구제를 받기 위하여
-                개인정보분쟁조정위원회, 한국인터넷진흥원 개인정보침해신고센터
-                등에 분쟁해결이나 상담 등을 신청할 수 있습니다.
-              </p>
+              <p>{t("privacy.content.remedy.intro")}</p>
               <div className="overflow-x-auto mt-4">
                 <table className="w-full text-sm border-collapse">
                   <thead>
-                    <tr className="bg-gray-100">
-                      <th className="border border-gray-200 px-3 py-2 text-left font-semibold">
-                        기관
+                    <tr className="bg-gray-100 dark:bg-slate-700">
+                      <th className="border border-gray-200 dark:border-gray-600 px-3 py-2 text-left font-semibold">
+                        {t("privacy.content.remedy.table.organization")}
                       </th>
-                      <th className="border border-gray-200 px-3 py-2 text-left font-semibold">
-                        연락처
+                      <th className="border border-gray-200 dark:border-gray-600 px-3 py-2 text-left font-semibold">
+                        {t("privacy.content.remedy.table.contact")}
                       </th>
-                      <th className="border border-gray-200 px-3 py-2 text-left font-semibold">
-                        웹사이트
+                      <th className="border border-gray-200 dark:border-gray-600 px-3 py-2 text-left font-semibold">
+                        {t("privacy.content.remedy.table.website")}
                       </th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr>
-                      <td className="border border-gray-200 px-3 py-2">
-                        개인정보분쟁조정위원회
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.remedy.rows.kopico.org")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        1833-6972
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.remedy.rows.kopico.contact")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        www.kopico.go.kr
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.remedy.rows.kopico.website")}
                       </td>
                     </tr>
-                    <tr className="bg-gray-50">
-                      <td className="border border-gray-200 px-3 py-2">
-                        개인정보침해신고센터
+                    <tr className="bg-gray-50 dark:bg-slate-700/50">
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.remedy.rows.kisa.org")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">118</td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        privacy.kisa.or.kr
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.remedy.rows.kisa.contact")}
+                      </td>
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.remedy.rows.kisa.website")}
                       </td>
                     </tr>
                     <tr>
-                      <td className="border border-gray-200 px-3 py-2">
-                        대검찰청 사이버수사과
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.remedy.rows.spo.org")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">1301</td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        www.spo.go.kr
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.remedy.rows.spo.contact")}
+                      </td>
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.remedy.rows.spo.website")}
                       </td>
                     </tr>
-                    <tr className="bg-gray-50">
-                      <td className="border border-gray-200 px-3 py-2">
-                        경찰청 사이버수사국
+                    <tr className="bg-gray-50 dark:bg-slate-700/50">
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.remedy.rows.police.org")}
                       </td>
-                      <td className="border border-gray-200 px-3 py-2">182</td>
-                      <td className="border border-gray-200 px-3 py-2">
-                        ecrm.police.go.kr
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.remedy.rows.police.contact")}
+                      </td>
+                      <td className="border border-gray-200 dark:border-gray-600 px-3 py-2">
+                        {t("privacy.content.remedy.rows.police.website")}
                       </td>
                     </tr>
                   </tbody>
@@ -766,16 +756,13 @@ export const PrivacyPage = () => {
             </h2>
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-3">
               <ul className="space-y-2 list-decimal list-inside ml-2">
-                <li>
-                  이 개인정보처리방침은 시행일로부터 적용되며, 법령 및 방침에
-                  따른 변경내용의 추가, 삭제 및 정정이 있는 경우에는 변경사항의
-                  시행 7일 전부터 공지사항을 통하여 고지할 것입니다.
-                </li>
-                <li>
-                  다만, 개인정보의 수집·이용 목적, 제3자 제공 대상 등 중요한
-                  사항이 변경되는 경우에는 최소 30일 전에 공지하며, 필요 시
-                  이용자 동의를 다시 받을 수 있습니다.
-                </li>
+                {(
+                  t("privacy.content.amendment.items", {
+                    returnObjects: true,
+                  }) as string[]
+                ).map((item, i) => (
+                  <li key={i}>{item}</li>
+                ))}
               </ul>
             </div>
           </section>
@@ -787,9 +774,9 @@ export const PrivacyPage = () => {
             </h2>
             <div className="text-gray-600 dark:text-gray-300 leading-relaxed space-y-2">
               <p>
-                <strong>제1조 (시행일)</strong>
+                <strong>{t("privacy.content.addendumContent.article1")}</strong>
               </p>
-              <p>이 개인정보 처리방침은 2025년 12월 10일부터 시행됩니다.</p>
+              <p>{t("privacy.content.addendumContent.effectiveDate")}</p>
             </div>
           </section>
 
@@ -799,33 +786,35 @@ export const PrivacyPage = () => {
               {t("privacy.history")}
             </h3>
             <ul className="text-gray-500 dark:text-gray-400 text-sm space-y-1">
-              <li>
-                • 2025년 12월 10일: 개인정보처리방침 전면 개정 (AI 학습 데이터
-                조항 추가, 자동화된 결정 권리 추가, 처리 위탁 상세화)
-              </li>
-              <li>• 2025년 12월 10일: 최초 제정</li>
+              {(
+                t("privacy.content.historyItems", {
+                  returnObjects: true,
+                }) as string[]
+              ).map((item, i) => (
+                <li key={i}>• {item}</li>
+              ))}
             </ul>
           </section>
 
           {/* 관련 문서 */}
-          <section className="pt-4 border-t border-gray-100">
-            <h3 className="text-sm font-semibold text-gray-700 mb-2">
-              관련 문서
+          <section className="pt-4 border-t border-gray-100 dark:border-gray-700">
+            <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2">
+              {t("privacy.content.relatedDocs.title")}
             </h3>
             <div className="flex gap-3">
               <Link
                 to="/terms"
-                className="text-blue-600 text-sm hover:underline"
+                className="text-blue-600 dark:text-blue-400 text-sm hover:underline"
               >
-                이용약관 →
+                {t("privacy.content.relatedDocs.terms")}
               </Link>
             </div>
           </section>
 
           {/* 최종 업데이트 */}
-          <section className="pt-4 border-t border-gray-100">
+          <section className="pt-4 border-t border-gray-100 dark:border-gray-700">
             <p className="text-gray-400 text-xs text-center">
-              최종 업데이트: 2025년 12월 10일
+              {t("privacy.content.lastUpdate")}
             </p>
           </section>
         </div>

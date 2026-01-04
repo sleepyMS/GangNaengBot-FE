@@ -46,7 +46,354 @@
       "amendment": "Article 16 (Amendment of Privacy Policy)"
     },
     "addendum": "Addendum",
-    "history": "Revision History"
+    "history": "Revision History",
+    "content": {
+      "overview": "GangNaengBot (hereinafter referred to as \"Service\") establishes and discloses this Privacy Policy in accordance with Article 30 of the Personal Information Protection Act to protect the personal information of data subjects (users) and to handle related complaints swiftly and smoothly. This policy applies when using the Service.",
+      "serviceName": "GangNaengBot",
+      "purpose": {
+        "intro": "The Service processes personal information for the following purposes. Personal information being processed will not be used for purposes other than the following, and if the purpose of use changes, necessary measures such as obtaining separate consent will be taken in accordance with Article 18 of the Personal Information Protection Act.",
+        "service": {
+          "title": "1. Service Provision",
+          "items": [
+            "AI-based Kangnam University academic information Q&A service",
+            "Conversation history storage and management",
+            "Personalized academic information and schedule guidance"
+          ]
+        },
+        "member": {
+          "title": "2. Member Management",
+          "items": [
+            "Confirmation of membership registration intent and identity verification",
+            "Maintenance and management of member qualifications",
+            "Prevention of unauthorized use of services"
+          ]
+        },
+        "improvement": {
+          "title": "3. Service Improvement",
+          "items": [
+            "Service usage analysis and statistics",
+            "AI model quality improvement (using anonymized data)",
+            "Development of new services and feature improvements"
+          ]
+        }
+      },
+      "items": {
+        "table": {
+          "category": "Category",
+          "collected": "Collected Items",
+          "required": "Required/Optional"
+        },
+        "rows": {
+          "signup": {
+            "category": "At Registration",
+            "items": "Email address, Google account profile information (name, profile image)",
+            "type": "Required"
+          },
+          "profile": {
+            "category": "Profile Setup",
+            "items": "Nickname, student ID, affiliation (college, department, major), grade, semester",
+            "type": "Optional"
+          },
+          "usage": {
+            "category": "Service Usage",
+            "items": "Conversation content (questions and AI responses), conversation session information",
+            "type": "Required"
+          },
+          "auto": {
+            "category": "Auto Collection",
+            "items": "Access time, browser information, device information (server logs)",
+            "type": "Required"
+          }
+        },
+        "warning": "Please do not enter sensitive personal information (social security numbers, financial information, health information, passwords, etc.) in AI conversations while using the service. The user is responsible for any sensitive information entered.",
+        "warningLabel": "⚠️ Warning:"
+      },
+      "method": {
+        "intro": "The Service collects personal information through the following methods:",
+        "signup": "Registration:",
+        "signupDesc": "Social login via Google OAuth 2.0",
+        "profile": "Profile Setup:",
+        "profileDesc": "Voluntary input by users",
+        "usage": "Service Usage:",
+        "usageDesc": "Content entered by users during conversations with AI chatbot",
+        "auto": "Auto Collection:",
+        "autoDesc": "Access logs automatically generated during service usage"
+      },
+      "period": {
+        "intro": "The Service destroys personal information without delay after the purpose of collection and use has been achieved. However, the following information is retained for the specified period for the reasons stated below:",
+        "table": {
+          "item": "Retained Items",
+          "period": "Retention Period",
+          "reason": "Legal Basis"
+        },
+        "rows": {
+          "account": {
+            "item": "Member Account Information",
+            "period": "Until account deletion",
+            "reason": "Service Agreement"
+          },
+          "chat": {
+            "item": "Conversation History",
+            "period": "Until account deletion or deletion request",
+            "reason": "Service Provision"
+          },
+          "log": {
+            "item": "Service Usage Records, Access Logs",
+            "period": "3 months",
+            "reason": "Protection of Communications Secrets Act Article 15-2"
+          },
+          "guest": {
+            "item": "Guest Conversation History",
+            "period": "Upon session end or after 7 days",
+            "reason": "Service Provision"
+          }
+        }
+      },
+      "destruction": {
+        "intro": "The Service destroys personal information without delay when it is no longer needed due to the expiration of the retention period or achievement of processing purposes.",
+        "procedure": {
+          "title": "Destruction Procedure",
+          "content": "Information entered by users is moved to a separate database after the purpose is achieved and stored for a certain period according to internal policies and relevant laws before being destroyed immediately."
+        },
+        "method": {
+          "title": "Destruction Method",
+          "electronic": "Electronic Files:",
+          "electronicDesc": "Deleted using technical methods that make recovery and reproduction impossible",
+          "paper": "Paper Documents:",
+          "paperDesc": "Shredded or incinerated"
+        }
+      },
+      "thirdParty": {
+        "intro": "The Service, in principle, processes users' personal information within the scope of purposes specified in Article 1 and does not process beyond the original purpose or provide to third parties without prior consent of the data subject.",
+        "exception": "However, the following cases are exceptions:",
+        "exceptions": [
+          "When the data subject has given prior consent to third-party provision",
+          "When there are special provisions in laws or when it is unavoidable to comply with legal obligations",
+          "When the data subject or their legal representative cannot express their intention or prior consent cannot be obtained due to unknown address, etc., and it is clearly necessary for urgent life, body, or property interests of the data subject or third party",
+          "When providing personal information in a form that cannot identify a specific individual for statistics compilation and academic research purposes"
+        ]
+      },
+      "consignment": {
+        "intro": "The Service entrusts personal information processing as follows for smooth service provision:",
+        "table": {
+          "recipient": "Recipient",
+          "task": "Entrusted Tasks"
+        },
+        "rows": {
+          "google": {
+            "recipient": "Google LLC",
+            "task": "Social login authentication service provision"
+          },
+          "gcp": {
+            "recipient": "Google Cloud Platform",
+            "task": "Server hosting and data storage (Google Cloud Run)"
+          },
+          "ai": {
+            "recipient": "AI Service Provider",
+            "task": "Response generation through AI model API"
+          }
+        },
+        "notice": "When concluding consignment contracts, matters regarding prohibition of personal information processing beyond consignment purposes, technical and administrative protection measures, re-consignment restrictions, supervision of consignees, and liability for damages are specified in contract documents, and we supervise whether consignees process personal information safely."
+      },
+      "ai": {
+        "badge": "🤖 AI Service Special Provisions",
+        "items": {
+          "training": {
+            "title": "Training Data Usage:",
+            "content": "Anonymized conversation data may be used for AI model improvement to enhance service quality. In this case, information that can identify individuals is completely removed."
+          },
+          "anonymization": {
+            "title": "De-identification Measures:",
+            "content": "Data used for AI training is pseudonymized or anonymized to ensure that specific individuals cannot be identified."
+          },
+          "response": {
+            "title": "AI Response Generation:",
+            "content": "The Service uses external AI model APIs to generate responses. Users' questions may be transmitted to the AI service provider for response generation, and technical measures for personal information protection are applied in this process."
+          },
+          "optout": {
+            "title": "Right to Refuse Training Data:",
+            "content": "Users can refuse to have their conversation data used for AI training. The refusal intention can be expressed by contacting the Chief Privacy Officer."
+          }
+        }
+      },
+      "rights": {
+        "intro": "Data subjects (users) can exercise the following rights related to personal information protection at any time:",
+        "items": {
+          "access": {
+            "title": "Request for Access:",
+            "content": "View the current status of personal information processing"
+          },
+          "correction": {
+            "title": "Request for Correction/Deletion:",
+            "content": "Request correction or deletion if there are errors"
+          },
+          "suspension": {
+            "title": "Request for Processing Suspension:",
+            "content": "Request suspension of personal information processing"
+          },
+          "withdrawal": {
+            "title": "Withdrawal of Consent:",
+            "content": "Withdraw consent for collection and use of personal information"
+          },
+          "deletion": {
+            "title": "Account Deletion:",
+            "content": "End service use and delete all personal information"
+          }
+        },
+        "howTo": {
+          "title": "How to Exercise Rights",
+          "profile": {
+            "title": "Profile Settings:",
+            "content": "Directly modify or delete in the profile settings page within the service"
+          },
+          "chat": {
+            "title": "Conversation History:",
+            "content": "Individual session deletion is available within the service"
+          },
+          "withdrawal": {
+            "title": "Account Deletion:",
+            "content": "Request through profile settings or contact the Chief Privacy Officer"
+          },
+          "other": {
+            "title": "Other Requests:",
+            "content": "Request via email (kpj45123@gmail.com)"
+          }
+        },
+        "notice": "Rights can be exercised through writing, phone, email, etc., and the Service will take action without delay. If the data subject requests correction or deletion of errors in personal information, the Service will not use or provide the personal information until correction or deletion is completed."
+      },
+      "automated": {
+        "intro": "The Service uses AI to automatically generate responses to users' questions. In this regard, data subjects have the following rights:",
+        "items": {
+          "explanation": {
+            "title": "Request for Explanation of Automated Decisions:",
+            "content": "You can request a general explanation of how AI generates responses."
+          },
+          "objection": {
+            "title": "Right to Object:",
+            "content": "If you believe the AI's response is inaccurate or inappropriate, you can raise an objection."
+          }
+        },
+        "notice": "However, AI responses from this Service are provided only for academic information guidance purposes and do not make legal decisions that significantly affect users' rights or obligations."
+      },
+      "children": {
+        "paragraph1": "The Service does not collect personal information of children under 14 years of age. The Service is primarily intended for university students and university staff and is not targeted at use by children under 14.",
+        "paragraph2": "If we become aware that personal information of a child under 14 has been collected, we will destroy it without delay."
+      },
+      "cookies": {
+        "intro": "The Service uses the browser's 'Local Storage' to provide personalized services to users. Unlike cookies, local storage is not automatically transmitted to the server and is stored only in the user's browser.",
+        "itemsTitle": "Stored Items",
+        "items": {
+          "token": {
+            "title": "Authentication Token (access_token)",
+            "desc": "Used for login state maintenance and API authentication"
+          },
+          "auth": {
+            "title": "User Information Cache (auth-storage)",
+            "desc": "User profile and authentication state caching"
+          },
+          "settings": {
+            "title": "Settings Information (gangnaeng-settings)",
+            "desc": "Theme (dark/light mode), preferred language settings"
+          },
+          "i18n": {
+            "title": "Language Detection Cache (i18next)",
+            "desc": "Language detection results for multilingual support"
+          }
+        },
+        "deleteTitle": "How to Delete Local Storage",
+        "deleteIntro": "Users can delete local storage data through browser settings or developer tools. Upon deletion, the login state will be terminated and settings will be reset.",
+        "deleteSteps": {
+          "chrome": "Chrome: Developer Tools (F12) → Application → Local Storage → Select and delete the site",
+          "safari": "Safari: Developer Tools → Storage → Delete from Local Storage",
+          "firefox": "Firefox: Developer Tools (F12) → Storage → Delete from Local Storage"
+        }
+      },
+      "safety": {
+        "intro": "The Service takes the following technical, administrative, and physical measures to ensure safety in accordance with Article 29 of the Personal Information Protection Act:",
+        "technical": {
+          "title": "🔒 Technical Measures",
+          "items": [
+            "Encrypted data transmission via SSL/TLS",
+            "Encrypted storage of sensitive information (hash, AES)",
+            "JWT token-based authentication system",
+            "Regular security vulnerability checks",
+            "Operation of intrusion detection and prevention systems"
+          ]
+        },
+        "administrative": {
+          "title": "📋 Administrative Measures",
+          "items": [
+            "Minimize personal information handlers",
+            "Separate personal information processing permissions",
+            "Establish and implement internal management plans",
+            "Access permission management and log recording",
+            "Regular internal audits"
+          ]
+        }
+      },
+      "officer": {
+        "intro": "The Service designates a Chief Privacy Officer as follows to take overall responsibility for personal information processing and to handle complaints and damage relief related to personal information processing by data subjects.",
+        "title": "Chief Privacy Officer",
+        "serviceName": "Service Name:",
+        "serviceValue": "GangNaengBot",
+        "person": "Officer:",
+        "personValue": "Hong Ki-hyun",
+        "email": "Email:",
+        "emailValue": "kpj45123@gmail.com",
+        "hours": "Available Hours:",
+        "hoursValue": "Weekdays 09:00 ~ 18:00 (excluding holidays)",
+        "notice": "Data subjects can contact the Chief Privacy Officer regarding all personal information protection inquiries, complaint handling, and damage relief that occur while using the Service. The Service will respond and process inquiries from data subjects without delay."
+      },
+      "remedy": {
+        "intro": "Data subjects can apply for dispute resolution or consultation to the Personal Information Dispute Mediation Committee, Korea Internet & Security Agency Privacy Center, etc. for relief from personal information infringement.",
+        "table": {
+          "organization": "Organization",
+          "contact": "Contact",
+          "website": "Website"
+        },
+        "rows": {
+          "kopico": {
+            "org": "Personal Information Dispute Mediation Committee",
+            "contact": "1833-6972",
+            "website": "www.kopico.go.kr"
+          },
+          "kisa": {
+            "org": "Personal Information Infringement Report Center",
+            "contact": "118",
+            "website": "privacy.kisa.or.kr"
+          },
+          "spo": {
+            "org": "Supreme Prosecutors' Office Cyber Investigation Department",
+            "contact": "1301",
+            "website": "www.spo.go.kr"
+          },
+          "police": {
+            "org": "National Police Agency Cyber Bureau",
+            "contact": "182",
+            "website": "ecrm.police.go.kr"
+          }
+        }
+      },
+      "amendment": {
+        "items": [
+          "This Privacy Policy is effective from the enforcement date, and if there are additions, deletions, and corrections of changes according to laws and policies, we will notify through announcements 7 days before the enforcement of changes.",
+          "However, if important matters such as the purpose of collecting/using personal information, third-party provision targets, etc. change, we will notify at least 30 days in advance and may obtain user consent again if necessary."
+        ]
+      },
+      "addendumContent": {
+        "article1": "Article 1 (Effective Date)",
+        "effectiveDate": "This Privacy Policy is effective from December 10, 2025."
+      },
+      "historyItems": [
+        "December 10, 2025: Complete revision of Privacy Policy (Added AI training data provisions, Added automated decision rights, Detailed processing consignment)",
+        "December 10, 2025: Initial establishment"
+      ],
+      "relatedDocs": {
+        "title": "Related Documents",
+        "terms": "Terms of Service →"
+      },
+      "lastUpdate": "Last Updated: December 10, 2025"
+    }
   },
   "terms": {
     "title": "Terms of Service",
